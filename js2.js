@@ -1,7 +1,16 @@
 $(document).ready(function () {
+    var teamNumber = 62;
     var mySKU;
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_events?team=62&status=current',
+        url: 'http://api.vex.us.nallen.me/get_teams?team='+teamNumber,
+        dataType: 'json',
+        success: function (jd) {
+            $('#title').append('<p>Team '+teamNumber+', '+jd.result[0].team_name+'</p>');
+        },
+        async: false,
+    });
+    $.ajax({
+        url: 'http://api.vex.us.nallen.me/get_events?team='+teamNumber+'&status=past',
         dataType: 'json',
         success: function (jd) {
             if (jd.size == 0) {
@@ -20,8 +29,8 @@ $(document).ready(function () {
         success: function (jd) {
             //$.getJSON('http://team62.github.io/matches', function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
             for (i = 0; i < jd.size; i++) {
-                if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62 || jd.result[i].blue1 == 62 || jd.result[i].blue2 == 62 || jd.result[i].blue3 == 62) {
-                    if (jd.result[i].scored == 0) {
+                if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber || jd.result[i].blue1 == teamNumber || jd.result[i].blue2 == teamNumber || jd.result[i].blue3 == teamNumber) {
+                    if (jd.result[i].scored == 1) {
                         $('#status').append('Next Match: ');
                         if (jd.result[i].round == 2) {
                             $('#status').append('QM ');
@@ -33,12 +42,13 @@ $(document).ready(function () {
                             $('#status').append('F ');
                         }
                         $('#status').append(jd.result[i].matchnum);
-                        if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62) {
+                        if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber) {
                             $('#status').append(", Red");
                         } else {
                             $('#status').append(", Blue");
                         }
                         $('#status').append(', ' + jd.result[i].field);
+
                         $('#status').append('<hr>');
                         break;
                     }
@@ -75,7 +85,7 @@ $(document).ready(function () {
             }
             scoreshtml += '</table>';
             $('#scores').append(scoreshtml);
-            /* POSSIBLE HIGH SCORE AND LOW SCORE IMPLEMENTATION
+            /*
             var highScore = 0;
             var lowScore = 5000;
             if (jd.size > 0) {
@@ -106,6 +116,20 @@ $(document).ready(function () {
             */
         },
         async: false,
+    });
+    $.ajax({
+        url: ('http://api.vex.us.nallen.me/get_matches?sku=' + mySKU),
+        dataType: 'json',
+        success: function (jd) {
+            for (i = 0; i < jd.length; i++) {
+                if (jd.results[i].scored == 0) {
+                    if (i != 0) {
+                        $('#status').append('\nCurrent Match Number: ' + jd.result[i - 1].matchnum);
+                        break;
+                    }
+                }
+            }
+        }
     });
     $.ajax({
         url: 'http://api.vex.us.nallen.me/get_rankings?sku=' + mySKU,
