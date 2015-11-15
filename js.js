@@ -3,7 +3,7 @@ $(document).ready(function () {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
     });
-    $.getJSON('http://team62.github.io/matches.json', function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
+    $.getJSON('http://team62.github.io/'+'matches.json', function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
             if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62 || jd.result[i].blue1 == 62 || jd.result[i].blue2 == 62 || jd.result[i].blue3 == 62) {
                 if (jd.result[i].scored == 0) {
