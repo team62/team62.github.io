@@ -1,8 +1,12 @@
 $(document).ready(function () {
+  try {
     $.getJSON('http://api.vex.us.nallen.me/get_events?status=current&team=62', function (jd) { //replace with events full url
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
     });
+  } catch (GeoIp2\Exception\AddressNotFoundException e) {
+    $('#status').append('<p>IT NO TWERKY</p>');
+  }
     $.getJSON('http://api.vex.us.nallen.me/get_matches?team=62&sku='+sku, function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
             if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62 || jd.result[i].blue1 == 62 || jd.result[i].blue2 == 62 || jd.result[i].blue3 == 62) {
