@@ -1,13 +1,9 @@
 $(document).ready(function () {
-  try {
     $.getJSON('http://api.vex.us.nallen.me/get_events?status=current&team=62', function (jd) { //replace with events full url
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
         $('#status').append('<p>' + sku + '</p>')
     });
-  } catch (err) {
-    $('#status').append('<p>IT NO TWERKY</p>'+err.message);
-  }
     matchesurl = 'http://api.vex.us.nallen.me/get_matches?team=62&sku='+sku;
     $.getJSON(matchesurl, function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
