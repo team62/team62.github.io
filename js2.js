@@ -3,6 +3,7 @@ $(document).ready(function () {
     $.getJSON('http://api.vex.us.nallen.me/get_events?status=current&team=62', function (jd) { //replace with events full url
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
+        $('#status').append('<p>' + sku + '</p>')
     });
   } catch (err) {
     $('#status').append('<p>IT NO TWERKY</p>'+err.message);
