@@ -118,7 +118,7 @@ $(document).ready(function () {
                         if (parseInt(jd.result[i].redscore) > parseInt(jd.result[i].bluescore)) {
                             scoreshtml += ('<td class="victory">WIN</td>');
                         } else {
-                            scoreshtml += ('<td class="loss">LOSS</td>');
+                            scoreshtml += ('<td class="yellow">LOSS</td>');
                         }
                     } else {
                         if(parseInt(jd.result[i].bluescore)>highScore) {
@@ -130,7 +130,7 @@ $(document).ready(function () {
                         if (parseInt(jd.result[i].bluescore) > parseInt(jd.result[i].redscore)) {
                             scoreshtml += ('<td class="victory">WIN</td>');
                         } else {
-                            scoreshtml += ('<td class="loss">LOSS</td>');
+                            scoreshtml += ('<td class="yellow">LOSS</td>');
                         }
                     }
                     scoreshtml += ('</tr>');
