@@ -8,7 +8,8 @@ $(document).ready(function () {
   } catch (err) {
     $('#status').append('<p>IT NO TWERKY</p>'+err.message);
   }
-    $.getJSON('http://api.vex.us.nallen.me/get_matches?team=62&sku='+sku, function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
+    matchesurl = 'http://api.vex.us.nallen.me/get_matches?team=62&sku='+sku;
+    $.getJSON(matchesurl, function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
             if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62 || jd.result[i].blue1 == 62 || jd.result[i].blue2 == 62 || jd.result[i].blue3 == 62) {
                 if (jd.result[i].scored == 0) {
