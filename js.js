@@ -6,7 +6,7 @@ $(document).ready(function () {
     $.getJSON('http://team62.github.io/'+'matches.json', function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
             if (jd.result[i].red1 == 62 || jd.result[i].red2 == 62 || jd.result[i].red3 == 62 || jd.result[i].blue1 == 62 || jd.result[i].blue2 == 62 || jd.result[i].blue3 == 62) {
-                if (jd.result[i].scored == 0) {
+                if (jd.result[i].scored == 1) {
                     $('#status').append('Next Match: ');
                     if (jd.result[i].round == 2) {
                         $('#status').append('QM ');
