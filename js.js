@@ -41,32 +41,37 @@ $(document).ready(function () {
         url: ('http://api.vex.us.nallen.me/get_matches?team='+teamNumber+'&sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
-            for (i = 0; i < jd.size; i++) {
-                if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber || jd.result[i].blue1 == teamNumber || jd.result[i].blue2 == teamNumber || jd.result[i].blue3 == teamNumber) {
-                    if (jd.result[i].scored == 0) {
-                        $('#status').append('Next Match: ');
-                        if (jd.result[i].round == 2) {
-                            $('#status').append('QM ');
-                        } else if (jd.result[i].round == 3) {
-                            $('#status').append('QF ');
-                        } else if (jd.result[i].round == 4) {
-                            $('#status').append('SF ');
-                        } else if (jd.result[i].round == 5) {
-                            $('#status').append('F ');
-                        }
-                        $('#status').append(jd.result[i].matchnum);
-                        if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber) {
-                            $('#status').append(", Red");
-                        } else {
-                            $('#status').append(", Blue");
-                        }
-                        $('#status').append(', ' + jd.result[i].field);
-
-                        $('#status').append('<hr>');
-                        break;
-                    }
-                }
-            }
+          for (i = 0; i < jd.size; i++) {
+              if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber || jd.result[i].blue1 == teamNumber || jd.result[i].blue2 == teamNumber || jd.result[i].blue3 == teamNumber) {
+                  if (jd.result[i].scored == 1) {
+                      $('#status').append('<i>Next Match:</i> ');
+                      if (jd.result[i].round == 2) {
+                          $('#status').append('QM ');
+                      } else if (jd.result[i].round == 3) {
+                          $('#status').append('QF ');
+                      } else if (jd.result[i].round == 4) {
+                          $('#status').append('SF ');
+                      } else if (jd.result[i].round == 5) {
+                          $('#status').append('F ');
+                      }
+                      $('#status').append(jd.result[i].matchnum);
+                      if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber) {
+                          $('#status').append(", Red");
+                      } else {
+                          $('#status').append(", Blue");
+                      }
+                      $('#status').append(', ' + jd.result[i].field);
+                      $('#status').append('<br><div style="color:red;">'+jd.result[i].red1+", "+jd.result[i].red2);
+                      if (jd.result[i].red3 != "")
+                      $('#status').append(", "+jd.result[i].red3);
+                      $('#status').append('</div><div style="color:blue;">'+jd.result[i].blue1+", "+jd.result[i].blue2);
+                      if (jd.result[i].blue3 != "")
+                      $('#status').append(", "+jd.result[i].blue3);
+                      $('#status').append('</div><hr>');
+                      break;
+                  }
+              }
+          }
             scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
             var highScore = 0;
             var lowScore = 5000;
