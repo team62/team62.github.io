@@ -43,7 +43,7 @@ $(document).ready(function () {
         success: function (jd) {
             for (i = 0; i < jd.size; i++) {
                 if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber || jd.result[i].blue1 == teamNumber || jd.result[i].blue2 == teamNumber || jd.result[i].blue3 == teamNumber) {
-                    if (jd.result[i].scored == 1) {
+                    if (jd.result[i].scored == 0) {
                         $('#status').append('Next Match: ');
                         if (jd.result[i].round == 2) {
                             $('#status').append('QM ');
