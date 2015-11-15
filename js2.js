@@ -1,8 +1,12 @@
 $(document).ready(function () {
     $.getJSON('http://api.vex.us.nallen.me/get_events?status=current&team=62', function (jd) { //replace with events full url
+      if(jd.size == 0) {
+        $('#status').append('<p>No Current Event</p>');
+      } else {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
         $('#status').append('<p>' + sku + '</p>')
+      }
     });
     $.getJSON('http://api.vex.us.nallen.me/get_matches?team=62&sku='+sku, function (jd) { //replace with matches SEARCHING FOR 62 AND SKU
         for (i = 0; i < jd.size; i++) {
