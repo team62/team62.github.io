@@ -15,7 +15,7 @@ $(document).ready(function () {
         dataType: 'json',
         success: function (jd) {
             if (jd.size == 0) {
-                $('#status').append('<p>No Current Event</p>');
+                $('#status').append('<p>No Current Event - Displaying Previous Results</p>');
                 competingCurrently = false;
             } else {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
