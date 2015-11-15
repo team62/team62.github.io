@@ -108,7 +108,9 @@ $(document).ready(function () {
                     else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
                     scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
                     scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
-                    if ((jd.result[i].red1 == teamNumber) || (jd.result[i].red2 == teamNumber) || (jd.result[i].red3 == teamNumber)) {
+                    if(parseInt(jd.result[i].redscore) == parseInt(jd.result[i].bluescore)) {}
+                      scoreshtml += ('<td class="tie">TIE</td>');
+                    } else if ((jd.result[i].red1 == teamNumber) || (jd.result[i].red2 == teamNumber) || (jd.result[i].red3 == teamNumber)) {
                         if(parseInt(jd.result[i].redscore)>highScore) {
                             highScore = parseInt(jd.result[i].redscore)
                         }
