@@ -1,3 +1,25 @@
 body {
-  font-family: 'Roboto', sans-serif;
+    font-family:'Roboto', sans-serif;
+}
+.teamname {
+    font-family:'Roboto', sans-serif;
+    font-size: 12;
+    font-weight: bold;
+    z-index: 2;
+    text-align: center;
+}
+td.red {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+td.yellow {
+    background-color: rgba(255, 255, 0, 0.5);
+}
+td.blue {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+td.victory {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+td.loss {
+    background-color: rgba(255, 0, 0, 0.5);
 }
