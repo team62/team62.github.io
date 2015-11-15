@@ -2,6 +2,7 @@ $(document).ready(function () {
     $.getJSON('http://api.vex.us.nallen.me/get_events?status=current&team=62', function (jd) { //replace with events full url
       if(jd.size == 0) {
         $('#status').append('<p>No Current Event</p>');
+        $('#maintable').hide();
       } else {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         sku = jd.result[0].sku;
