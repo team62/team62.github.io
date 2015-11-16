@@ -23,3 +23,19 @@ td.victory {
 td.tie {
     background-color: rgba(0, 255, 255, 0.5);
 }
+a:link {
+   text-decoration: none;
+   color: #173853;
+}
+a:visited {
+   text-decoration: none;
+   color: #173853;
+}
+a:hover {
+   text-decoration: none;
+   color: #173853;
+}
+a:active {
+   text-decoration: none;
+   color: #173853;
+}
