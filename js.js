@@ -32,7 +32,7 @@ $(document).ready(function () {
             success: function (jd) {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
                 mySKU = jd.result[0].sku;
-                $('#sku').append(mySKU);
+                $('#sku').append(mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/'+mySKU+'>VexDB</a>');
             },
             async: false,
         });
