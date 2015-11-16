@@ -20,7 +20,7 @@ $(document).ready(function () {
             } else {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
                 mySKU = jd.result[0].sku;
-                $('#sku').append('RobotEvents Link: <a href=http://www.robotevents.com/'+mySKU+'.html>'+mySKU+'</a>');
+                $('#sku').append(mySKU+': <a href=http://www.robotevents.com/'+mySKU+'.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/'+mySKU+'>VexDB</a>');
             }
         },
         async: false,
