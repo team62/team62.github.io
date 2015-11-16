@@ -96,17 +96,17 @@ $(document).ready(function () {
                     b2 = jd.result[i].blue2;
                     b3 = jd.result[i].blue3;
                     if(r1==teamNumber)
-                    	r1='<b>'+r1+'</b>';
+                    	r1='<b style="color:purple">'+r1+'</b>';
                     if(r2==teamNumber)
-                    	r2='<b>'+r2+'</b>';
+                    	r2='<b style="color:purple">'+r2+'</b>';
                     if(r3==teamNumber)
-                    	r3='<b>'+r3+'</b>';
+                    	r3='<b style="color:purple">'+r3+'</b>';
                     if(b1==teamNumber)
-                    	b1='<b>'+b1+'</b>';
+                    	b1='<b style="color:purple">'+b1+'</b>';
                     if(b2==teamNumber)
-                    	b2='<b>'+b2+'</b>';
+                    	b2='<b style="color:purple">'+b2+'</b>';
                     if(b3==teamNumber)
-                    	b3='<b>'+b3+'</b>';
+                    	b3='<b style="color:purple">'+b3+'</b>';
                     if (jd.result[i].red3 == "") scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
                     else scoreshtml += ('<td class="red">' + r1 + ", " + r2 + ", " + r3 + '</td>');
                     if (jd.result[i].blue3 == "") scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
