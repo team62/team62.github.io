@@ -177,14 +177,14 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_rankings?team='+teamNumber+'&sku=' + mySKU,
+        url: 'http://api.vex.us.nallen.me/get_rankings?team='+teamNumber+'&sku='+mySKU,
         dataType: 'json',
         success: function (jd) {
             $('#us').append('<td>-</td>');
-            $('#us').append('<td>' + jd.result[0].team + '</td>');
-            $('#us').append('<td>' + jd.result[0].wins + '-' + jd.result[0].losses + '-' + jd.result[0].ties + '</td>');
-            $('#us').append('<td>' + jd.result[0].wp + '</td>');
-            $('#us').append('<td>' + jd.result[0].sp + '</td>');
+            $('#us').append('<td><b>' + jd.result[0].team + '</b></td>');
+            $('#us').append('<td><b>' + jd.result[0].wins + '-' + jd.result[0].losses + '-' + jd.result[0].ties + '</b></td>');
+            $('#us').append('<td><b>' + jd.result[0].wp + '</b></td>');
+            $('#us').append('<td><b>' + jd.result[0].sp + '</b></td>');
         },
         async: false,
     });
