@@ -20,7 +20,7 @@ $(document).ready(function () {
             } else {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
                 mySKU = jd.result[0].sku;
-                $('#sku').append(mySKU);
+                $('#sku').append('RobotEvents Link: <a href=http://www.robotevents.com/'+mySKU+'.html>'+mySKU+'</a>');
             }
         },
         async: false,
