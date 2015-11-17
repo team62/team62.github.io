@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    var teamNumber = "20X";
+    var teamNumber = "62";
     var mySKU;
     var competingCurrently = true;
     $.ajax({
