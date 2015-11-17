@@ -180,7 +180,7 @@ $(document).ready(function () {
         url: 'http://api.vex.us.nallen.me/get_rankings?team='+teamNumber+'&sku='+mySKU,
         dataType: 'json',
         success: function (jd) {
-            $('#us').append('<td>-</td>');
+            $('#us').append('<td><b>' + jd.result[0].rank + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].team + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].wins + '-' + jd.result[0].losses + '-' + jd.result[0].ties + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].wp + '</b></td>');
