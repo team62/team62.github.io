@@ -160,8 +160,8 @@ $(document).ready(function () {
                     
                 }
             }
-        }//,
-//async: false,
+        },
+        async: false,
     });
     $.ajax({
         url: 'http://api.vex.us.nallen.me/get_rankings?sku=' + mySKU,
