@@ -156,7 +156,7 @@ $(document).ready(function () {
                 if (jd.results[i].scored == 0) {
     
                         $('#currentmatch').append('<p><i>Current Match Number:</i> ' + jd.result[i].matchnum + '</p>');
-                        break;
+                        //break;
                     
                 }
             }
