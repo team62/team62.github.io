@@ -155,7 +155,7 @@ $(document).ready(function () {
             for (i = 0; i < jd.size; i++) {
                 if (jd.results[i].scored == 0) {
     
-                        $('#currentmatch').append('<p><i>Current Match Number:</i> ' + jd.result[i].matchnum + '</p>');
+                        $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
                         break;
                     
                 }
