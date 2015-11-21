@@ -76,7 +76,7 @@ $(document).ready(function () {
             var highScore = 0;
             var lowScore = 5000;
             for (i = 0; i < jd.size; i++) {
-                if (jd.result[i].scored == 1) {
+                if (true /*jd.result[i].scored == 1*/) {
                     scoreshtml += ('<tr>');
                     scoreshtml += ('<td>');
                     if (jd.result[i].round == 2) {
@@ -113,7 +113,9 @@ $(document).ready(function () {
                     else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
                     scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
                     scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
-                    if ((jd.result[i].red1 == teamNumber) || (jd.result[i].red2 == teamNumber) || (jd.result[i].red3 == teamNumber)) {
+                    if(jd.result[i].scored == 0)
+                        scoreshtml += ('<td>Unplayed</td>');
+                    else if ((jd.result[i].red1 == teamNumber) || (jd.result[i].red2 == teamNumber) || (jd.result[i].red3 == teamNumber)) {
                         if(parseInt(jd.result[i].redscore)>highScore) {
                             highScore = parseInt(jd.result[i].redscore)
                         }
