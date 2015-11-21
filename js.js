@@ -152,11 +152,11 @@ $(document).ready(function () {
         url: ('http://api.vex.us.nallen.me/get_matches?sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
-            for (i = 0; i < jd.length; i++) {
+            for (i = 0; i < jd.size; i++) {
                 if (jd.results[i].scored == 0) {
     
                         $('#currentmatch').append('<p><i>Current Match Number:</i> ' + jd.result[i].matchnum + '</p>');
-                        //break;
+                        break;
                     
                 }
             }
