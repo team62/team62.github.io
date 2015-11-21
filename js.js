@@ -206,7 +206,7 @@ $.ajax({
                     
                 }
             }
-        },
-        async: false,
+        }//,
+       // async: false,
     });
 });
