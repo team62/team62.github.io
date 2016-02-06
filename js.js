@@ -196,6 +196,23 @@ $(document).ready(function () {
             },
             async: false,
         });
+        $.ajax({
+                url: 'http://api.vexdb.io/get_skills?skills=' + mySKU,
+                dataType: 'json',
+                success: function (jd) {
+                    scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th>';
+                    for (i = 0; i < jd.size; i++) {
+                        scoreshtml+=('<td>' + jd.result[i].rank + '</td>');
+                        scoreshtml+=('<td>' + jd.result[i].team + '</td>');
+                        scoreshtml+=('<td>' + jd.result[i].score + '</td>');
+                        scoreshtml+=('<td>' + jd.result[i].attempts + '</td>');
+
+                    }
+                    scoreshtml+= '</table>';
+                    $('#skills').append(scoreshtml);
+                },
+                async: false,
+            });
 $.ajax({
         url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
