@@ -3,7 +3,7 @@ $(document).ready(function () {
     var mySKU;
     var competingCurrently = true;
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_teams?team=' + teamNumber,
+        url: 'http://api.vexdb.io/get_teams?team=' + teamNumber,
         dataType: 'json',
         success: function (jd) {
             $('#title').append('<p>Team ' + teamNumber + ', ' + jd.result[0].team_name + '</p>');
@@ -11,7 +11,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_events?team=' + teamNumber + '&status=current',
+        url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
         dataType: 'json',
         success: function (jd) {
             if (jd.size == 0) {
@@ -27,7 +27,7 @@ $(document).ready(function () {
     });
     if(!competingCurrently) {
         $.ajax({
-            url: 'http://api.vex.us.nallen.me/get_events?team=' + teamNumber + '&status=past',
+            url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=past',
             dataType: 'json',
             success: function (jd) {
                 $('#status').append('<p>' + jd.result[0].name + '</p>');
@@ -38,7 +38,7 @@ $(document).ready(function () {
         });
     }
     $.ajax({
-        url: ('http://api.vex.us.nallen.me/get_matches?team='+teamNumber+'&sku=' + mySKU),
+        url: ('http://api.vexdb.io/get_matches?team='+teamNumber+'&sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
           for (i = 0; i < jd.size; i++) {
@@ -151,7 +151,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_rankings?sku=' + mySKU,
+        url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
         dataType: 'json',
         success: function (jd) {
             for (i = 0; i < 3; i++) {
@@ -165,7 +165,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-        url: 'http://api.vex.us.nallen.me/get_rankings?team='+teamNumber+'&sku='+mySKU,
+        url: 'http://api.vexdb.io/get_rankings?team='+teamNumber+'&sku='+mySKU,
         dataType: 'json',
         success: function (jd) {
             $('#us').append('<td><b>' + jd.result[0].rank + '</b></td>');
@@ -177,7 +177,7 @@ $(document).ready(function () {
         async: false,
     });
     $.ajax({
-            url: 'http://api.vex.us.nallen.me/get_rankings?sku=' + mySKU,
+            url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
             dataType: 'json',
             success: function (jd) {
                 scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>Max Score</th><th>WP</th><th>SP</th></tr>';
@@ -197,15 +197,15 @@ $(document).ready(function () {
             async: false,
         });
 $.ajax({
-        url: ('http://api.vex.us.nallen.me/get_matches?sku=' + mySKU),
+        url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
             for (i = 0; i < jd.size; i++) {
                 if (jd.results[i].scored == 0) {
-    
+
                         $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
                         break;
-                    
+
                 }
             }
         }//,
