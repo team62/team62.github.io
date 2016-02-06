@@ -213,10 +213,27 @@ $(document).ready(function () {
 
                 }
                 roboSkillsHtml+= '</table>';
-                $('#skills').append(roboSkillsHtml);
+                $('#roboskills').append(roboSkillsHtml);
             },
             async: false,
         });
+        $.ajax({
+                url: 'http://api.vexdb.io/get_skills?type=1&sku=' + mySKU,
+                dataType: 'json',
+                success: function (jd) {
+                    roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
+                    for (i = 0; i < jd.size; i++) {
+                        roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
+                        roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
+                        roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
+                        roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
+
+                    }
+                    roboSkillsHtml+= '</table>';
+                    $('#progskills').append(roboSkillsHtml);
+                },
+                async: false,
+            });
 $.ajax({
         url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
