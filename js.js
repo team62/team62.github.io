@@ -211,7 +211,7 @@ $(document).ready(function () {
                 roboSkillsHtml+= '</table>';
                 $('#skills').append(roboSkillsHtml);
             },
-            async: true,
+            async: false,
         });
 $.ajax({
         url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
