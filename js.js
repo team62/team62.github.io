@@ -182,7 +182,7 @@ $(document).ready(function () {
             success: function (jd) {
                 scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>Max Score</th><th>WP</th><th>SP</th></tr>';
                 for (i = 0; i < jd.size; i++) {
-                    scoreshtml+=('<td>' + jd.result[i].rank + '</td>');
+                    scoreshtml+=('<tr><td>' + jd.result[i].rank + '</td>');
                     scoreshtml+=('<td>' + jd.result[i].team + '</td>');
                     scoreshtml+=('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
                     scoreshtml+=('<td>' + jd.result[i].max_score + '</td>');
@@ -200,12 +200,12 @@ $(document).ready(function () {
             url: 'http://api.vexdb.io/get_skills?type=0&sku=' + mySKU,
             dataType: 'json',
             success: function (jd) {
-                scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th>';
+                scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                 for (i = 0; i < jd.size; i++) {
-                    scoreshtml+=('<td>' + jd.result[i].rank + '</td>');
+                    scoreshtml+=('<tr><td>' + jd.result[i].rank + '</td>');
                     scoreshtml+=('<td>' + jd.result[i].team + '</td>');
                     scoreshtml+=('<td>' + jd.result[i].score + '</td>');
-                    scoreshtml+=('<td>' + jd.result[i].attempts + '</td>');
+                    scoreshtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
 
                 }
                 scoreshtml+= '</table>';
