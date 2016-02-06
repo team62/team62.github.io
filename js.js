@@ -156,11 +156,11 @@ $(document).ready(function () {
         success: function (jd) {
             if(jd.size==0) {} else {
               for (i = 0; i < 3; i++) {
-                  $('#' + (i + 1)).append('<td>' + jd.result[i].rank + '</td>');
-                  $('#' + (i + 1)).append('<td>' + jd.result[i].team + '</td>');
-                  $('#' + (i + 1)).append('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
-                  $('#' + (i + 1)).append('<td>' + jd.result[i].wp + '</td>');
-                  $('#' + (i + 1)).append('<td>' + jd.result[i].sp + '</td>');
+                $('#' + (i + 1)).append('<td>' + jd.result[i].rank + '</td>');
+                $('#' + (i + 1)).append('<td>' + jd.result[i].team + '</td>');
+                $('#' + (i + 1)).append('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
+                $('#' + (i + 1)).append('<td>' + jd.result[i].wp + '</td>');
+                $('#' + (i + 1)).append('<td>' + jd.result[i].sp + '</td>');
               }
             }
         },
@@ -170,11 +170,13 @@ $(document).ready(function () {
         url: 'http://api.vexdb.io/get_rankings?team='+teamNumber+'&sku='+mySKU,
         dataType: 'json',
         success: function (jd) {
+          if(jd.size==0) {} else {
             $('#us').append('<td><b>' + jd.result[0].rank + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].team + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].wins + '-' + jd.result[0].losses + '-' + jd.result[0].ties + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].wp + '</b></td>');
             $('#us').append('<td><b>' + jd.result[0].sp + '</b></td>');
+          }
         },
         async: false,
     });
