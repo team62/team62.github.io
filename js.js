@@ -206,11 +206,17 @@ $(document).ready(function () {
             success: function (jd) {
                 roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                 for (i = 0; i < jd.size; i++) {
+                  if(jd.result[i].team == teamNumber) {
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].score + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
+                  } else {
                     roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
                     roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
                     roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
                     roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
-
+                  }
                 }
                 roboSkillsHtml+= '</table>';
                 $('#roboskills').append(roboSkillsHtml);
@@ -223,11 +229,17 @@ $(document).ready(function () {
                 success: function (jd) {
                     roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                     for (i = 0; i < jd.size; i++) {
+                      if(jd.result[i].team == teamNumber) {
+                        roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
+                        roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
+                        roboSkillsHtml+=('<td><b>' + jd.result[i].score + '</b></td>');
+                        roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
+                      } else {
                         roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
                         roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
                         roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
                         roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
-
+                      }
                     }
                     roboSkillsHtml+= '</table>';
                     $('#progskills').append(roboSkillsHtml);
