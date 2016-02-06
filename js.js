@@ -154,12 +154,14 @@ $(document).ready(function () {
         url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
         dataType: 'json',
         success: function (jd) {
-            for (i = 0; i < 3; i++) {
-                $('#' + (i + 1)).append('<td>' + jd.result[i].rank + '</td>');
-                $('#' + (i + 1)).append('<td>' + jd.result[i].team + '</td>');
-                $('#' + (i + 1)).append('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
-                $('#' + (i + 1)).append('<td>' + jd.result[i].wp + '</td>');
-                $('#' + (i + 1)).append('<td>' + jd.result[i].sp + '</td>');
+            if(jd.size==0) {} else {
+              for (i = 0; i < 3; i++) {
+                  $('#' + (i + 1)).append('<td>' + jd.result[i].rank + '</td>');
+                  $('#' + (i + 1)).append('<td>' + jd.result[i].team + '</td>');
+                  $('#' + (i + 1)).append('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
+                  $('#' + (i + 1)).append('<td>' + jd.result[i].wp + '</td>');
+                  $('#' + (i + 1)).append('<td>' + jd.result[i].sp + '</td>');
+              }
             }
         },
         async: false,
