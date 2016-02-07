@@ -18,7 +18,6 @@
   <meta name="theme-color" content="#ffffff">
   <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="/css.css">
-  <link rel="stylesheet" type="text/css" href="https://raw.githubusercontent.com/daneden/Toast/master/css/grid.css">
   <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
   <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <script type="text/javascript" src="js.js" ></script>
@@ -27,16 +26,14 @@
 </head>
 <body>
     <p id="title" class="teamname"></p>
-    <div style="width=100%">
-      <div class="grid">
-        <div class="grid__col grid__col--1-of-3">
-          <i>Robot Skills</i>
-          <div id="roboskills"></div>
-        </div>
-        <div class="grid__col grid__col--1-of-3">
-          <i>Programming Skills</i>
-          <div id="progskills"></div>
-        </div>
+    <div style="width:100%">
+      <div style="left:50%">
+        <i>Robot Skills</i>
+        <div id="roboskills"></div>
+      </div>
+      <div class="right:50%">
+        <i>Programming Skills</i>
+        <div id="progskills"></div>
       </div>
     </div>
     <div id="sku"></div>
