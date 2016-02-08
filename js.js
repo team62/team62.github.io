@@ -249,7 +249,7 @@ $(document).ready(function () {
             });
             */
             $.ajax({
-                    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=' + mySKU+'&div=',
+                    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=RE-VRC-16-4214&div=',
                     dataType: 'text',
                     function (input) {
                         var jd = jQuery.parseJSON(CSV2JSON(input));
