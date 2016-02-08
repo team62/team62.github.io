@@ -265,14 +265,15 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku='+mySKU+'&div=',
-    dataType: 'text',
-    success: function(input) {
-      var jd = jQuery.parseJSON(CSV2JSON(input));
-      for (i = 0; i < jd.length; i++) {
-        if (jd[i].scored == 'FALSE') {
-          $('#currentmatch').append('Current Match Number: ' + jd[i].matchnum);
-          break;
+    url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
+    dataType: 'json',
+    success: function(jd) {
+        for (i = 0; i < jd.size; i++) {
+          if (jd.results[i].scored == 0) {
+
+            $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
+            break;
+
           }
         }
       } //,
