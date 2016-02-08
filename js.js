@@ -38,7 +38,7 @@ $(document).ready(function() {
     });
   }
   $.ajax({
-    url: ('http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=RE-VRC-15-3788&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=RE-VRC-15-3788&div=1',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
