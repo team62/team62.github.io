@@ -108,9 +108,9 @@ $(document).ready(function() {
             b2 = '<b style="font-weight:bolder;">' + b2 + '</b>';
           if (b3 == teamNumber)
             b3 = '<b style="font-weight:bolder;">' + b3 + '</b>';
-          if (jd[i].red3 == "undefined") scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
+          if (jd[i].red3 == undefined) scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
           else scoreshtml += ('<td class="red">' + r1 + ", " + r2 + ", " + r3 + '</td>');
-          if (jd[i].blue3 == "undefined") scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
+          if (jd[i].blue3 == undefined) scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
           else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
           scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
           scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
