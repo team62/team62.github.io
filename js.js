@@ -181,17 +181,18 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
-    dataType: 'json',
-    success: function(jd) {
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    dataType: 'text',
+    success: function(input) {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>Max Score</th><th>WP</th><th>SP</th></tr>';
-      for (i = 0; i < jd.size; i++) {
-        scoreshtml += ('<td>' + jd.result[i].rank + '</td>');
-        scoreshtml += ('<td>' + jd.result[i].team + '</td>');
-        scoreshtml += ('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
-        scoreshtml += ('<td>' + jd.result[i].max_score + '</td>');
-        scoreshtml += ('<td>' + jd.result[i].wp + '</td>');
-        scoreshtml += ('<td>' + jd.result[i].sp + '</td></tr>');
+      var jd = jQuery.parseJSON(CSV2JSON(input));
+      for (i = 0; i < jd.length; i++) {
+        scoreshtml += ('<td>' + jd[i].rank + '</td>');
+        scoreshtml += ('<td>' + jd[i].team + '</td>');
+        scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
+        scoreshtml += ('<td>' + jd[i].max_score + '</td>');
+        scoreshtml += ('<td>' + jd[i].wp + '</td>');
+        scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
 
 
       }
