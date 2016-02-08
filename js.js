@@ -204,7 +204,6 @@ $(document).ready(function() {
     url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-16-4214&div=',
     dataType: 'text',
     success: function(input) {
-      newJSON = CSV2JSON(input);
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
@@ -229,7 +228,6 @@ $(document).ready(function() {
     url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=RE-VRC-16-4214&div=',
     dataType: 'text',
     success: function(input) {
-      newJSON = CSV2JSON(input);
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
@@ -254,7 +252,7 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
     dataType: 'json',
     success: function(jd) {
-      $('#robohighscore').append(jd.result[0].team + "(" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
+      $('#robohighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
     },
     async: false,
   });
@@ -262,7 +260,7 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
     dataType: 'json',
     success: function(jd) {
-      $('#proghighscore').append(jd.result[0].team + "(" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
+      $('#proghighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
     },
     async: false,
   });
