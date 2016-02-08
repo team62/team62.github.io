@@ -200,6 +200,7 @@ $(document).ready(function () {
             },
             async: false,
         });
+        /*
         $.ajax({
                 url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-16-4214&div=',
                 dataType: 'text',
