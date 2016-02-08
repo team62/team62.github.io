@@ -200,46 +200,24 @@ $(document).ready(function () {
             },
             async: false,
         });
-    $.ajax({
-            url: 'http://api.vexdb.io/get_skills?type=0&sku=' + mySKU,
-            dataType: 'json',
-            success: function (jd) {
-                roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
-                for (i = 0; i < jd.size; i++) {
-                  if(jd.result[i].team == teamNumber) {
-                    roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd.result[i].score + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
-                  } else {
-                    roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
-                  }
-                }
-                roboSkillsHtml+= '</table>';
-                $('#roboskills').append(roboSkillsHtml);
-            },
-            async: false,
-        });
-        /* old skills
         $.ajax({
-                url: 'http://api.vexdb.io/get_skills?type=1&sku=' + mySKU,
-                dataType: 'json',
-                success: function (jd) {
+                url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-16-4214&div=',
+                dataType: 'text',
+                success: function (input) {
+                    newJSON = CSV2JSON(input);
+                    var jd = jQuery.parseJSON(CSV2JSON(input));
                     roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
-                    for (i = 0; i < jd.size; i++) {
-                      if(jd.result[i].team == teamNumber) {
-                        roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
-                        roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
-                        roboSkillsHtml+=('<td><b>' + jd.result[i].score + '</b></td>');
-                        roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
+                    for (i = 0; i < 8; i++) {
+                      if(jd[i].team == teamNumber) {
+                        roboSkillsHtml+=('<td class=yellow><b>' + jd[i].rank + '</b></td>');
+                        roboSkillsHtml+=('<td class=yellow><b>' + jd[i].team + '</b></td>');
+                        roboSkillsHtml+=('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
+                        roboSkillsHtml+=('<td class=yellow><b>' + jd[i].attempts + '</b></td></tr>');
                       } else {
-                        roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
-                        roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
-                        roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
-                        roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
+                        roboSkillsHtml+=('<td>' + jd[i].rank + '</td>');
+                        roboSkillsHtml+=('<td>' + jd[i].team + '</td>');
+                        roboSkillsHtml+=('<td>' + jd[i].highscore + '</td>');
+                        roboSkillsHtml+=('<td>' + jd[i].attempts + '</td></tr>');
                       }
                     }
                     roboSkillsHtml+= '</table>';
@@ -247,7 +225,6 @@ $(document).ready(function () {
                 },
                 async: false,
             });
-            */
             $.ajax({
                     url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=RE-VRC-16-4214&div=',
                     dataType: 'text',
