@@ -200,9 +200,8 @@ $(document).ready(function () {
             },
             async: false,
         });
-        /*
         $.ajax({
-                url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku='+mySKU+'&div=',
+                url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-16-4214&div=',
                 dataType: 'text',
                 success: function (input) {
                     newJSON = CSV2JSON(input);
@@ -252,7 +251,7 @@ $(document).ready(function () {
             });
             */
             $.ajax({
-                    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku'+mySKU+'&div=',
+                    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&skuRE-VRC-16-4214&div=',
                     dataType: 'text',
                     success: function (input) {
                         newJSON = CSV2JSON(input);
