@@ -221,7 +221,7 @@ $(document).ready(function () {
                       }
                     }
                     roboSkillsHtml+= '</table>';
-                    $('#progskills').append(roboSkillsHtml);
+                    $('#roboskills').append(roboSkillsHtml);
                 },
                 async: false,
             });
