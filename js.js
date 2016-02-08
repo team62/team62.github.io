@@ -252,8 +252,7 @@ $(document).ready(function () {
                     url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=' + mySKU+'&div=',
                     dataType: 'text',
                     function (input) {
-                        jd = CSV2JSON(input);
-                        jd = jQuery.parseJSON(jd);
+                        var jd = jQuery.parseJSON(CSV2JSON(input));
                         roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                         for (i = 0; i < 9; i++) {
                           if(jd[i].team == teamNumber) {
