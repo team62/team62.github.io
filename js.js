@@ -250,6 +250,22 @@ $(document).ready(function () {
                     },
                     async: false,
                 });
+                $.ajax({
+                        url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
+                        dataType: 'json',
+                        success: function (jd) {
+                            $('#robohighscore').append(jd.result[0].team+"("+jd.result[0].attempts+" attempts): "+jd.result[0].score);
+                        },
+                        async: false,
+                });
+                $.ajax({
+                        url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
+                        dataType: 'json',
+                        success: function (jd) {
+                            $('#proghighscore').append(jd.result[0].team+"("+jd.result[0].attempts+" attempts): "+jd.result[0].score);
+                        },
+                        async: false,
+                });
         $.ajax({
         url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
