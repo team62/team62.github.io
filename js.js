@@ -277,8 +277,8 @@ $(document).ready(function() {
           break;
         }
       }
-    },
-    async: false,
+    }//,
+    //async: false,
   });
 });
 
