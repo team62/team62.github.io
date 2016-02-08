@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var teamNumber = "62";
-  var mySKU;
+  var mySKU = "RE-VRC-15-4367";
   var competingCurrently = true;
   $.ajax({
     url: 'http://api.vexdb.io/get_teams?team=' + teamNumber,
@@ -10,6 +10,7 @@ $(document).ready(function() {
     },
     async: false,
   });
+  /*
   $.ajax({
     url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
     dataType: 'json',
@@ -25,6 +26,7 @@ $(document).ready(function() {
     },
     async: false,
   });
+  */
   if (!competingCurrently) {
     $.ajax({
       url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=past',
@@ -265,19 +267,18 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
-    dataType: 'json',
-    success: function(jd) {
-        for (i = 0; i < jd.size; i++) {
-          if (jd.results[i].scored == 0) {
-
-            $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
-            break;
-
-          }
+    url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku='+mySKU+'&div=',
+    dataType: 'text',
+    success: function(input) {
+      var jd = jQuery.parseJSON(CSV2JSON(input));
+      for (i = 0; i < jd.length; i++) {
+        if (jd.results[i].scored == 0) {
+          $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
+          break;
         }
-      } //,
-      // async: false,
+      }
+    },
+    async: false,
   });
 });
 
