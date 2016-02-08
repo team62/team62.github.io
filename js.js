@@ -186,7 +186,7 @@ $(document).ready(function() {
     success: function(input) {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
       var jd = jQuery.parseJSON(CSV2JSON(input));
-      for (i = 0; i < jd.length; i++) {
+      for (i = 0; i < jd.length-1; i++) {
         scoreshtml += ('<td>' + jd[i].rank + '</td>');
         scoreshtml += ('<td>' + jd[i].teamnum + '</td>');
         scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
