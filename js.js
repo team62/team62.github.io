@@ -200,6 +200,7 @@ $(document).ready(function () {
             },
             async: false,
         });
+        /*
         $.ajax({
                 url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku='+mySKU+'&div=',
                 dataType: 'text',
