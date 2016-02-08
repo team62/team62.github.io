@@ -38,35 +38,36 @@ $(document).ready(function() {
     });
   }
   $.ajax({
-    url: ('http://api.vexdb.io/get_matches?team=' + teamNumber + '&sku=' + mySKU),
+    url: ('http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=RE-VRC-15-3788&div=1',
     dataType: 'json',
-    success: function(jd) {
-      for (i = 0; i < jd.size; i++) {
-        if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber || jd.result[i].blue1 == teamNumber || jd.result[i].blue2 == teamNumber || jd.result[i].blue3 == teamNumber) {
-          if (jd.result[i].scored == 0) {
+    success: function(input) {
+      var jd = jQuery.parseJSON(CSV2JSON(input));
+      for (i = 0; i < jd.length; i++) {
+        if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
+          if (jd[i].scored == 0) {
             $('#status').append('<i>Next Match:</i> ');
-            if (jd.result[i].round == 2) {
+            if (jd[i].round == 2) {
               $('#status').append('QM ');
-            } else if (jd.result[i].round == 3) {
+            } else if (jd[i].round == 3) {
               $('#status').append('QF ');
-            } else if (jd.result[i].round == 4) {
+            } else if (jd[i].round == 4) {
               $('#status').append('SF ');
-            } else if (jd.result[i].round == 5) {
+            } else if (jd[i].round == 5) {
               $('#status').append('F ');
             }
-            $('#status').append(jd.result[i].matchnum);
-            if (jd.result[i].red1 == teamNumber || jd.result[i].red2 == teamNumber || jd.result[i].red3 == teamNumber) {
+            $('#status').append(jd[i].matchnum);
+            if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber) {
               $('#status').append(", Red");
             } else {
               $('#status').append(", Blue");
             }
-            $('#status').append(', ' + jd.result[i].field);
-            $('#status').append('<br><div style="color:red;">' + jd.result[i].red1 + ", " + jd.result[i].red2);
-            if (jd.result[i].red3 != "")
+            $('#status').append(', ' + jd[i].field);
+            $('#status').append('<br><div style="color:red;">' + jd[i].red1 + ", " + jd[i].red2);
+            if (jd[i].red3 != "")
               $('#status').append(", " + jd.result[i].red3);
-            $('#status').append('</div><div style="color:blue;">' + jd.result[i].blue1 + ", " + jd.result[i].blue2);
-            if (jd.result[i].blue3 != "")
-              $('#status').append(", " + jd.result[i].blue3);
+            $('#status').append('</div><div style="color:blue;">' + jd[i].blue1 + ", " + jd[i].blue2);
+            if (jd[i].blue3 != "")
+              $('#status').append(", " + jd[i].blue3);
             $('#status').append('</div><hr>');
             break;
           }
@@ -75,26 +76,26 @@ $(document).ready(function() {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
       var highScore = 0;
       var lowScore = 5000;
-      for (i = 0; i < jd.size; i++) {
+      for (i = 0; i < jd.length; i++) {
         if (true /*jd.result[i].scored == 1*/ ) {
           scoreshtml += ('<tr>');
           scoreshtml += ('<td>');
-          if (jd.result[i].round == 2) {
+          if (jd[i].round == 2) {
             scoreshtml += ('QM ');
-          } else if (jd.result[i].round == 3) {
+          } else if (jd[i].round == 3) {
             scoreshtml += ('QF ');
-          } else if (jd.result[i].round == 4) {
+          } else if (jd[i].round == 4) {
             scoreshtml += ('SF ');
-          } else if (jd.result[i].round == 5) {
+          } else if (jd[i].round == 5) {
             scoreshtml += ('F ');
           }
-          scoreshtml += (jd.result[i].matchnum + '</td>');
-          r1 = jd.result[i].red1;
-          r2 = jd.result[i].red2;
-          r3 = jd.result[i].red3;
-          b1 = jd.result[i].blue1;
-          b2 = jd.result[i].blue2;
-          b3 = jd.result[i].blue3;
+          scoreshtml += (jd[i].matchnum + '</td>');
+          r1 = jd[i].red1;
+          r2 = jd[i].red2;
+          r3 = jd[i].red3;
+          b1 = jd[i].blue1;
+          b2 = jd[i].blue2;
+          b3 = jd[i].blue3;
           if (r1 == teamNumber)
             r1 = '<b style="font-weight:bolder;">' + r1 + '</b>';
           if (r2 == teamNumber)
@@ -107,34 +108,34 @@ $(document).ready(function() {
             b2 = '<b style="font-weight:bolder;">' + b2 + '</b>';
           if (b3 == teamNumber)
             b3 = '<b style="font-weight:bolder;">' + b3 + '</b>';
-          if (jd.result[i].red3 == "") scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
+          if (jd[i].red3 == "") scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
           else scoreshtml += ('<td class="red">' + r1 + ", " + r2 + ", " + r3 + '</td>');
-          if (jd.result[i].blue3 == "") scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
+          if (jd[i].blue3 == "") scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
           else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
-          scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
-          scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
-          if (jd.result[i].scored == 0)
+          scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
+          scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
+          if (jd[i].scored == 0)
             scoreshtml += ('<td>Unplayed</td>');
-          else if ((jd.result[i].red1 == teamNumber) || (jd.result[i].red2 == teamNumber) || (jd.result[i].red3 == teamNumber)) {
-            if (parseInt(jd.result[i].redscore) > highScore) {
-              highScore = parseInt(jd.result[i].redscore)
+          else if ((jd[i].red1 == teamNumber) || (jd[i].red2 == teamNumber) || (jd[i].red3 == teamNumber)) {
+            if (parseInt(jd[i].redscore) > highScore) {
+              highScore = parseInt(jd[i].redscore)
             }
-            if (parseInt(jd.result[i].redscore) < lowScore) {
-              lowScore = parseInt(jd.result[i].redscore)
+            if (parseInt(jd[i].redscore) < lowScore) {
+              lowScore = parseInt(jd[i].redscore)
             }
-            if (parseInt(jd.result[i].redscore) > parseInt(jd.result[i].bluescore)) {
+            if (parseInt(jd[i].redscore) > parseInt(jd[i].bluescore)) {
               scoreshtml += ('<td class="victory">WIN</td>');
             } else {
               scoreshtml += ('<td class="yellow">LOSS</td>');
             }
           } else {
-            if (parseInt(jd.result[i].bluescore) > highScore) {
-              highScore = parseInt(jd.result[i].bluescore)
+            if (parseInt(jd[i].bluescore) > highScore) {
+              highScore = parseInt(jd[i].bluescore)
             }
-            if (parseInt(jd.result[i].bluescore) < lowScore) {
-              lowScore = parseInt(jd.result[i].bluescore)
+            if (parseInt(jd[i].bluescore) < lowScore) {
+              lowScore = parseInt(jd[i].bluescore)
             }
-            if (parseInt(jd.result[i].bluescore) > parseInt(jd.result[i].redscore)) {
+            if (parseInt(jd[i].bluescore) > parseInt(jd[i].redscore)) {
               scoreshtml += ('<td class="victory">WIN</td>');
             } else {
               scoreshtml += ('<td class="yellow">LOSS</td>');
