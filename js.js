@@ -201,7 +201,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-16-4214&div=',
+    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku='+mySKU+'&div=',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
