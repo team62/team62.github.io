@@ -257,10 +257,10 @@ $(document).ready(function () {
                         roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                         for (i = 0; i < 8; i++) {
                           if(jd[i].team == teamNumber) {
-                            roboSkillsHtml+=('<td><b>' + jd[i].rank + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd[i].team + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd[i].highscore + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd[i].attempts + '</b></td></tr>');
+                            roboSkillsHtml+=('<td class=yellow><b>' + jd[i].rank + '</b></td>');
+                            roboSkillsHtml+=('<td class=yellow><b>' + jd[i].team + '</b></td>');
+                            roboSkillsHtml+=('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
+                            roboSkillsHtml+=('<td class=yellow><b>' + jd[i].attempts + '</b></td></tr>');
                           } else {
                             roboSkillsHtml+=('<td>' + jd[i].rank + '</td>');
                             roboSkillsHtml+=('<td>' + jd[i].team + '</td>');
