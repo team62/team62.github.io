@@ -187,13 +187,19 @@ $(document).ready(function() {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
       var jd = jQuery.parseJSON(CSV2JSON(input));
       for (i = 0; i < jd.length-1; i++) {
-        scoreshtml += ('<td>' + jd[i].rank + '</td>');
-        scoreshtml += ('<td>' + jd[i].teamnum + '</td>');
-        scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
-        scoreshtml += ('<td>' + jd[i].wp + '</td>');
-        scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
-
-
+        if(jd[i].teamnum==teamNumber) {
+          scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
+          scoreshtml += ('<td class=yellow><b>' + jd[i].teamnum + '</b></td>');
+          scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
+          scoreshtml += ('<td class=yellow><b>' + jd[i].wp + '</b></td>');
+          scoreshtml += ('<td class=yellow><b>' + jd[i].sp + '</b></td></tr>');
+        } else {
+          scoreshtml += ('<td>' + jd[i].rank + '</td>');
+          scoreshtml += ('<td>' + jd[i].teamnum + '</td>');
+          scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
+          scoreshtml += ('<td>' + jd[i].wp + '</td>');
+          scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
+        }
       }
       scoreshtml += '</table>';
       $('#rankings').append(scoreshtml);
