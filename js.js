@@ -206,16 +206,16 @@ $(document).ready(function () {
             success: function (jd) {
                 roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                 for (i = 0; i < jd.size; i++) {
-                  if(jd[i].team == teamNumber) {
-                    roboSkillsHtml+=('<td><b>' + jd[i].rank + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd[i].team + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd[i].score + '</b></td>');
-                    roboSkillsHtml+=('<td><b>' + jd[i].attempts + '</b></td></tr>');
+                  if(jd.result[i].team == teamNumber) {
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].score + '</b></td>');
+                    roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
                   } else {
-                    roboSkillsHtml+=('<td>' + jd.[i].rank + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.[i].team + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.[i].score + '</td>');
-                    roboSkillsHtml+=('<td>' + jd.[i].attempts + '</td></tr>');
+                    roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
+                    roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
+                    roboSkillsHtml+=('<td>' + jd.result[i].score + '</td>');
+                    roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
                   }
                 }
                 roboSkillsHtml+= '</table>';
@@ -256,15 +256,15 @@ $(document).ready(function () {
                         roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                         for (i = 0; i < 9; i++) {
                           if(jd[i].team == teamNumber) {
-                            roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd.result[i].highscore + '</b></td>');
-                            roboSkillsHtml+=('<td><b>' + jd.result[i].attempts + '</b></td></tr>');
+                            roboSkillsHtml+=('<td><b>' + jd[i].rank + '</b></td>');
+                            roboSkillsHtml+=('<td><b>' + jd[i].team + '</b></td>');
+                            roboSkillsHtml+=('<td><b>' + jd[i].highscore + '</b></td>');
+                            roboSkillsHtml+=('<td><b>' + jd[i].attempts + '</b></td></tr>');
                           } else {
-                            roboSkillsHtml+=('<td>' + jd.result[i].rank + '</td>');
-                            roboSkillsHtml+=('<td>' + jd.result[i].team + '</td>');
-                            roboSkillsHtml+=('<td>' + jd.result[i].highscore + '</td>');
-                            roboSkillsHtml+=('<td>' + jd.result[i].attempts + '</td></tr>');
+                            roboSkillsHtml+=('<td>' + jd[i].rank + '</td>');
+                            roboSkillsHtml+=('<td>' + jd[i].team + '</td>');
+                            roboSkillsHtml+=('<td>' + jd[i].highscore + '</td>');
+                            roboSkillsHtml+=('<td>' + jd[i].attempts + '</td></tr>');
                           }
                         }
                         roboSkillsHtml+= '</table>';
