@@ -271,8 +271,8 @@ $(document).ready(function() {
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
-      for (i = 0; i < jd.length; i++) {
-        if (jd.results[i].scored == 0) {
+      for (i = 0; i < jd.length-1; i++) {
+        if (jd[i].scored == 0) {
           $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
           break;
         }
