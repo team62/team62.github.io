@@ -251,7 +251,8 @@ $(document).ready(function () {
             $.ajax({
                     url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=RE-VRC-16-4214&div=',
                     dataType: 'text',
-                    function (input) {
+                    success: function (input) {
+                        newJSON = CSV2JSON(input);
                         var jd = jQuery.parseJSON(CSV2JSON(input));
                         roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                         for (i = 0; i < 8; i++) {
@@ -268,7 +269,7 @@ $(document).ready(function () {
                           }
                         }
                         roboSkillsHtml+= '</table>';
-                        $('#progskills').append(roboSkillsHtml);
+                        $('#json').append(roboSkillsHtml);
                     },
                     async: false,
                 });
