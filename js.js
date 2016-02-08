@@ -187,8 +187,8 @@ $(document).ready(function() {
     success: function(input) {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
       var jd = jQuery.parseJSON(CSV2JSON(input));
-      for (i = 0; i < jd.length-1; i++) {
-        if(jd[i].teamnum==teamNumber) {
+      for (i = 0; i < jd.length - 1; i++) {
+        if (jd[i].teamnum == teamNumber) {
           scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
           scoreshtml += ('<td class=yellow><b>' + jd[i].teamnum + '</b></td>');
           scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
@@ -208,7 +208,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku='+mySKU+'&div=',
+    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -232,7 +232,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku='+mySKU+'&div=',
+    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
