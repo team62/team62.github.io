@@ -254,7 +254,7 @@ $(document).ready(function () {
                     success: function (input) {
                         jd = CSV2JSON(input);
                         roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
-                        for (i = 0; i < jd.size; i++) {
+                        for (i = 0; i < 9; i++) {
                           if(jd[i].team == teamNumber) {
                             roboSkillsHtml+=('<td><b>' + jd.result[i].rank + '</b></td>');
                             roboSkillsHtml+=('<td><b>' + jd.result[i].team + '</b></td>');
@@ -272,7 +272,7 @@ $(document).ready(function () {
                     },
                     async: false,
                 });
-$.ajax({
+        $.ajax({
         url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
         dataType: 'json',
         success: function (jd) {
