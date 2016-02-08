@@ -203,7 +203,7 @@ $(document).ready(function () {
     $.ajax({
             url: 'http://api.vexdb.io/get_skills?type=0&sku=' + mySKU,
             dataType: 'json',
-            success: function (jd) {amico
+            success: function (jd) {
                 roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
                 for (i = 0; i < jd.size; i++) {
                   if(jd.result[i].team == teamNumber) {
