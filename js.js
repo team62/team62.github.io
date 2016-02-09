@@ -226,7 +226,7 @@ $(document).ready(function() {
 
   //handle robot skills - from RobotEvents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=RE-VRC-15-3788&div=',
+    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
