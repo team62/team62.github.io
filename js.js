@@ -167,7 +167,7 @@ $(document).ready(function() {
       if (jd.length < 3) {} else {
         for (i = 0; i < 3; i++) {
           $('#' + (i + 1)).append('<td>' + jd[i].rank + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].team + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].teamnum + '</td>');
           $('#' + (i + 1)).append('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
           $('#' + (i + 1)).append('<td>' + jd[i].wp + '</td>');
           $('#' + (i + 1)).append('<td>' + jd[i].sp + '</td>');
@@ -179,10 +179,11 @@ $(document).ready(function() {
   $.ajax({
     url: 'http://api.vexdb.io/get_rankings?team=' + teamNumber + '&sku=' + mySKU,
     dataType: 'json',
-    success: function(jd) {
+    success: function(input) {
+      var jd = jQuery.parseJSON(CSV2JSON(input));
       if (jd.length == 0) {} else {
         $('#us').append('<td><b>' + jd[0].rank + '</b></td>');
-        $('#us').append('<td><b>' + jd[0].team + '</b></td>');
+        $('#us').append('<td><b>' + jd[0].teamnum + '</b></td>');
         $('#us').append('<td><b>' + jd[0].wins + '-' + jd[0].losses + '-' + jd[0].ties + '</b></td>');
         $('#us').append('<td><b>' + jd[0].wp + '</b></td>');
         $('#us').append('<td><b>' + jd[0].sp + '</b></td>');
