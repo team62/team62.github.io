@@ -299,7 +299,7 @@ $(document).ready(function() {
     },
     async: false,
   });
-  if (!competingCurrently) {
+  if (!skillsCompetition) {
     $.ajax({
       url: ('http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1'),
       dataType: 'text',
