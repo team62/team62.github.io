@@ -177,16 +177,20 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://api.vexdb.io/get_rankings?team=' + teamNumber + '&sku=' + mySKU,
-    dataType: 'json',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       if (jd.length == 0) {} else {
-        $('#us').append('<td><b>' + jd[0].rank + '</b></td>');
-        $('#us').append('<td><b>' + jd[0].teamnum + '</b></td>');
-        $('#us').append('<td><b>' + jd[0].wins + '-' + jd[0].losses + '-' + jd[0].ties + '</b></td>');
-        $('#us').append('<td><b>' + jd[0].wp + '</b></td>');
-        $('#us').append('<td><b>' + jd[0].sp + '</b></td>');
+        for(i = 0; i < jd.length; i++) {
+          if(jd[i].teamnum == teamNumber) {
+            $('#us').append('<td><b>' + jd[i].rank + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].teamnum + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].wins + '-' + jd[0].losses + '-' + jd[0].ties + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].wp + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].sp + '</b></td>');
+          }
+        }
       }
     },
     async: false,
