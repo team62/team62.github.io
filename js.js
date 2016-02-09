@@ -2,7 +2,7 @@ $(document).ready(function() {
   var teamNumber = "62";
   var mySKU;
   var competingCurrently = true;
-  var skillsCompetition = false;
+  var skillsCompetition = true;
 
   //For title, gets team name
   $.ajax({
