@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var teamNumber = "62";
-  var mySKU 'RE-VRC-15-3788';
+  var mySKU = 'RE-VRC-15-3788';
   var competingCurrently = true;
   var skillsCompetition = false;
 
