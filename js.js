@@ -82,8 +82,8 @@ $(document).ready(function() {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
       var highScore = 0;
       var lowScore = 5000;
-      for (i = 0; i < jd.length; i++) {
-        if (true /*jd.result[i].scored == 1*/ ) {
+      for (i = 0; i < jd.length-1; i++) {
+        if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
           scoreshtml += ('<tr>');
           scoreshtml += ('<td>');
           if (jd[i].round == 2) {
@@ -310,6 +310,7 @@ $(document).ready(function() {
           break;
         }
       }
+      /*
       for(i = 0; i<jd.length; i++) {
         if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
           differience = jd[i].matchnum - currentMatchNumber;
@@ -317,6 +318,7 @@ $(document).ready(function() {
           break;
         }
       }
+      */
     },
     async: false,
   });
