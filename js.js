@@ -2,6 +2,8 @@ $(document).ready(function() {
   var teamNumber = "62";
   var mySKU;
   var competingCurrently = true;
+
+  //For title, gets team name
   $.ajax({
     url: 'http://api.vexdb.io/get_teams?team=' + teamNumber,
     dataType: 'json',
@@ -10,6 +12,8 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
   $.ajax({
     url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
     dataType: 'json',
@@ -37,6 +41,8 @@ $(document).ready(function() {
       async: false,
     });
   }
+
+  //Handle matches from RobotEvents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=RE-VRC-15-3788&div=1',
     dataType: 'text',
@@ -151,17 +157,20 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //Handle rankings from vexdb
   $.ajax({
-    url: 'http://api.vexdb.io/get_rankings?sku=' + mySKU,
-    dataType: 'json',
-    success: function(jd) {
-      if (jd.size == 0) {} else {
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    dataType: 'text',
+    success: function(input) {
+      var jd = jQuery.parseJSON(CSV2JSON(input));
+      if (jd.length < 3) {} else {
         for (i = 0; i < 3; i++) {
-          $('#' + (i + 1)).append('<td>' + jd.result[i].rank + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd.result[i].team + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd.result[i].wp + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd.result[i].sp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].rank + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].team + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].wp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].sp + '</td>');
         }
       }
     },
@@ -171,16 +180,18 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/get_rankings?team=' + teamNumber + '&sku=' + mySKU,
     dataType: 'json',
     success: function(jd) {
-      if (jd.size == 0) {} else {
-        $('#us').append('<td><b>' + jd.result[0].rank + '</b></td>');
-        $('#us').append('<td><b>' + jd.result[0].team + '</b></td>');
-        $('#us').append('<td><b>' + jd.result[0].wins + '-' + jd.result[0].losses + '-' + jd.result[0].ties + '</b></td>');
-        $('#us').append('<td><b>' + jd.result[0].wp + '</b></td>');
-        $('#us').append('<td><b>' + jd.result[0].sp + '</b></td>');
+      if (jd.length == 0) {} else {
+        $('#us').append('<td><b>' + jd[0].rank + '</b></td>');
+        $('#us').append('<td><b>' + jd[0].team + '</b></td>');
+        $('#us').append('<td><b>' + jd[0].wins + '-' + jd[0].losses + '-' + jd[0].ties + '</b></td>');
+        $('#us').append('<td><b>' + jd[0].wp + '</b></td>');
+        $('#us').append('<td><b>' + jd[0].sp + '</b></td>');
       }
     },
     async: false,
   });
+
+  //Handle rankings - from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
     dataType: 'text',
@@ -207,6 +218,8 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //handle robot skills - from RobotEvents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
@@ -231,6 +244,8 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //handle programming sills - from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
@@ -255,6 +270,8 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //Robot skills high score - from vexdb
   $.ajax({
     url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
     dataType: 'json',
@@ -263,6 +280,8 @@ $(document).ready(function() {
     },
     async: false,
   });
+
+  //programming skills high score - from vexdb
   $.ajax({
     url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
     dataType: 'json',
@@ -271,20 +290,30 @@ $(document).ready(function() {
     },
     async: false,
   });
+
   $.ajax({
-    url: ('http://api.vexdb.io/get_matches?sku=' + mySKU),
-    dataType: 'json',
-    success: function(jd) {
-        for (i = 0; i < jd.size; i++) {
-          if (jd.results[i].scored == 0) {
-
-            $('#currentmatch').append('Current Match Number: ' + jd.result[i].matchnum);
-            break;
-
-          }
+    url: ('http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1'),
+    dataType: 'text',
+    success: function(input) {
+    var jd = jQuery.parseJSON(CSV2JSON(input));
+    currentMatchNumber = 0;
+    differience = 0;
+      for (i = 0; i < jd.length; i++) {
+        if (jd[i].scored == 'False') {
+          currentMatchNumber = jd[i].matchnum;
+          $('#currentmatch').append('Current Match Number: ' + jd[i].matchnum);
+          break;
         }
-      } //,
-      // async: false,
+      }
+      for(i = 0; i<jd.length; i++) {
+        if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber jd[i].blue3 == teamNumber)) {
+          differience = jd[i].matchnum - currentMatchNumber;
+          $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches');
+          break;
+        }
+      }
+    },
+    async: false,
   });
 });
 
