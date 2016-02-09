@@ -264,12 +264,12 @@ $(document).ready(function() {
       for (i = 0; i < jd.length - 1; i++) {
         if (jd[i].teamnum == teamNumber) {
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].teamnum + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].team + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].attempts + '</b></td></tr>');
         } else {
           roboSkillsHtml += ('<td>' + jd[i].rank + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].teamnum + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].team + '</td>');
           roboSkillsHtml += ('<td>' + jd[i].highscore + '</td>');
           roboSkillsHtml += ('<td>' + jd[i].attempts + '</td></tr>');
         }
