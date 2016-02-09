@@ -227,7 +227,7 @@ $(document).ready(function() {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
-        if (jd[i].team == teamNumber) {
+        if (jd[i].teamnum == teamNumber) {
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].team + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
@@ -253,7 +253,7 @@ $(document).ready(function() {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
-        if (jd[i].team == teamNumber) {
+        if (jd[i].teamnum == teamNumber) {
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].team + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
