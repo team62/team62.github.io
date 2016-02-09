@@ -44,7 +44,7 @@ $(document).ready(function() {
 
   //Handle matches from RobotEvents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=RE-VRC-15-3788&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku='+mySKU+'&div=1',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -160,7 +160,7 @@ $(document).ready(function() {
 
   //Handle rankings from vexdb
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku='+mySKU+'&div=1',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -177,7 +177,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku='+mySKU+'&div=1',
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -198,7 +198,7 @@ $(document).ready(function() {
 
   //Handle rankings - from robotevents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku='+mySKU+'&div=1',
     dataType: 'text',
     success: function(input) {
       scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
@@ -297,7 +297,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url: ('http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=RE-VRC-15-3788&div=1'),
+    url: ('http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku='+mySKU+'&div=1'),
     dataType: 'text',
     success: function(input) {
     var jd = jQuery.parseJSON(CSV2JSON(input));
