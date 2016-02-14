@@ -160,7 +160,7 @@ $(document).ready(function() {
       async: false,
     });
 
-    //Handle rankings from vexdb
+    //Handle rankings from robotevents
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
       dataType: 'text',
@@ -188,7 +188,7 @@ $(document).ready(function() {
             if (jd[i].teamnum == teamNumber) {
               $('#us').append('<td><b>' + jd[i].rank + '</b></td>');
               $('#us').append('<td><b>' + jd[i].teamnum + '</b></td>');
-              $('#us').append('<td><b>' + jd[i].wins + '-' + jd[0].losses + '-' + jd[0].ties + '</b></td>');
+              $('#us').append('<td><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
               $('#us').append('<td><b>' + jd[i].wp + '</b></td>');
               $('#us').append('<td><b>' + jd[i].sp + '</b></td>');
             }
