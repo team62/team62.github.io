@@ -45,6 +45,7 @@ $(document).ready(function() {
     });
   }
   //Handle matches from RobotEvents
+  if (!skillsCompetition) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=1',
       dataType: 'text',
@@ -225,6 +226,7 @@ $(document).ready(function() {
       },
       async: false,
     });
+  }
   //handle robot skills - from RobotEvents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
