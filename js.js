@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var teamNumber = "62";
-  var mySKU = "RE-VRC-16-4112";
+  var mySKU;
   var competingCurrently = true;
   var skillsCompetition = true;
 
@@ -13,8 +13,6 @@ $(document).ready(function() {
     },
     async: false,
   });
-
-/*
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
   $.ajax({
     url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
@@ -25,7 +23,7 @@ $(document).ready(function() {
         competingCurrently = false;
       } else {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
-        mySKU = jd.result[0].sku;
+        mySKU = jd.result[1].sku;
         $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       }
     },
@@ -37,16 +35,15 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(jd) {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
-        if ((jd.result[0].name).indexOf("Skills") > 0 || (jd.result[0].name).indexOf("skills") > 0) {
+        if ((jd.result[1].name).indexOf("Skills") > 0 || (jd.result[1].name).indexOf("skills") > 0) {
           skillsCompetition = true;
         }
-        mySKU = jd.result[0].sku;
+        mySKU = jd.result[1].sku;
         $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
     });
   }
-  */
   //Handle matches from RobotEvents
   if (!skillsCompetition) {
     $.ajax({
