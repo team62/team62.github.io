@@ -34,11 +34,11 @@ $(document).ready(function() {
       url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=past',
       dataType: 'json',
       success: function(jd) {
-        $('#status').append('<p>' + jd.result[1].name + '</p>');
-        if ((jd.result[1].name).indexOf("Skills") > 0 || (jd.result[1].name).indexOf("skills") > 0) {
+        $('#status').append('<p>' + jd.result[0].name + '</p>');
+        if ((jd.result[0].name).indexOf("Skills") > 0 || (jd.result[1].name).indexOf("skills") > 0) {
           skillsCompetition = true;
         }
-        mySKU = jd.result[1].sku;
+        mySKU = jd.result[0].sku;
         $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
