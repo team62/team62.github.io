@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var teamNumber = "62";
+  var teamNumber = "1104Z";
   var mySKU;
   var competingCurrently = true;
   var skillsCompetition = true;
