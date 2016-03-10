@@ -4,9 +4,7 @@ $(document).ready(function() {
   var competingCurrently = true;
   var skillsCompetition = false;
 
-  if($.urlParam('team')=="") {
-    teamNumber = $.urlParam('team');
-  }
+  console.log($.url.attr('team'));
 
   //For title, gets team name
   $.ajax({
@@ -397,14 +395,4 @@ function CSV2JSON(csv) {
   var str = json.replace(/},/g, "},\r\n");
 
   return str;
-}
-
-$.urlParam = function(name){
-    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-    if (results==null){
-       return null;
-    }
-    else{
-       return results[1] || 0;
-    }
 }
