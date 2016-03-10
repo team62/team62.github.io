@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var teamNumber = "62";
+  var teamNumber = "1104Z";
   var mySKU;
   var competingCurrently = true;
   var skillsCompetition = false;
@@ -15,7 +15,7 @@ $(document).ready(function() {
   });
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
   $.ajax({
-    url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
+    url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=current',
     dataType: 'json',
     success: function(jd) {
       if (jd.size == 0) {
@@ -31,7 +31,7 @@ $(document).ready(function() {
   });
   if (!competingCurrently) {
     $.ajax({
-      url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=past',
+      url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=past',
       dataType: 'json',
       success: function(jd) {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
