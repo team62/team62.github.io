@@ -44,7 +44,6 @@ $(document).ready(function() {
       async: false,
     });
   }
-  /*
   //Handle matches from RobotEvents
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=1',
@@ -160,8 +159,6 @@ $(document).ready(function() {
       },
       async: false,
     });
-    */
-    /*
     //Handle rankings from robotevents
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
@@ -321,12 +318,10 @@ $(document).ready(function() {
           }
         }
         */
-        /*
       },
       async: false,
     });
   }
-  */
 });
 
 function CSVToArray(strData, strDelimiter) {
