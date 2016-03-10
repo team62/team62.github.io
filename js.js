@@ -1,10 +1,11 @@
 $(document).ready(function() {
-  var teamNumber = "1104Z";
+  var teamNumber = getUrlParameter('team');
   var mySKU;
   var competingCurrently = true;
   var skillsCompetition = false;
 
-  console.log(getUrlParameter('team'));
+  if(teamNumber==undefined)
+    teamNumber="1104Z"
 
   //For title, gets team name
   $.ajax({
