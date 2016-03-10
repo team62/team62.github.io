@@ -3,6 +3,7 @@ $(document).ready(function() {
   var mySKU;
   var competingCurrently = true;
   var skillsCompetition = false;
+  var accessRobotEvents = false;
 
   if (teamNumber == undefined)
     teamNumber = "62"
@@ -36,6 +37,7 @@ $(document).ready(function() {
       }
     },
     async: false,
+    timeout: 5000,
   });
   if (!competingCurrently) {
     $.ajax({
@@ -50,6 +52,7 @@ $(document).ready(function() {
         $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
+      timeout: 5000,
     });
   }
   //Handle matches from RobotEvents
@@ -166,6 +169,7 @@ $(document).ready(function() {
         $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
     },
     async: false,
+    timeout: 5000,
   });
   //Handle rankings from robotevents
   $.ajax({
@@ -184,6 +188,7 @@ $(document).ready(function() {
       }
     },
     async: false,
+    timeout: 5000,
   });
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
@@ -203,6 +208,7 @@ $(document).ready(function() {
       }
     },
     async: false,
+    timeout: 5000,
   });
 
   //Handle rankings - from robotevents
@@ -231,6 +237,7 @@ $(document).ready(function() {
       $('#rankings').append(scoreshtml);
     },
     async: false,
+    timeout: 5000,
   });
   //handle robot skills - from RobotEvents
   $.ajax({
@@ -256,6 +263,7 @@ $(document).ready(function() {
       $('#roboskills').append(roboSkillsHtml);
     },
     async: false,
+    timeout: 5000,
   });
 
   //handle programming sills - from robotevents
@@ -282,6 +290,7 @@ $(document).ready(function() {
       $('#progskills').append(roboSkillsHtml);
     },
     async: false,
+    timeout: 5000,
   });
   //Robot skills high score - from vexdb
   $.ajax({
@@ -291,6 +300,7 @@ $(document).ready(function() {
       $('#robohighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
     },
     async: false,
+    timeout: 5000,
   });
 
   //programming skills high score - from vexdb
@@ -301,6 +311,7 @@ $(document).ready(function() {
       $('#proghighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
     },
     async: false,
+    timeout: 5000,
   });
   if (!skillsCompetition) {
     $.ajax({
@@ -328,6 +339,7 @@ $(document).ready(function() {
         */
       },
       async: false,
+      timeout: 5000,
     });
   }
 });
