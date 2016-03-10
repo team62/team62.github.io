@@ -1,8 +1,12 @@
 $(document).ready(function() {
-  var teamNumber = "1104Z";
+  var teamNumber = "62";
   var mySKU;
   var competingCurrently = true;
   var skillsCompetition = false;
+
+  if($.urlParam('team')!=null) {
+    teamNumber = $.urlParam('team');
+  }
 
   //For title, gets team name
   $.ajax({
@@ -393,4 +397,14 @@ function CSV2JSON(csv) {
   var str = json.replace(/},/g, "},\r\n");
 
   return str;
+}
+
+$.urlParam = function(name){
+    var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results==null){
+       return null;
+    }
+    else{
+       return results[1] || 0;
+    }
 }
