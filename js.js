@@ -2,7 +2,7 @@ $(document).ready(function() {
   var teamNumber = "1104Z";
   var mySKU;
   var competingCurrently = true;
-  var skillsCompetition = true;
+  var skillsCompetition = false;
 
   //For title, gets team name
   $.ajax({
@@ -226,6 +226,7 @@ $(document).ready(function() {
       async: false,
     });
   //handle robot skills - from RobotEvents
+  /*
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
     dataType: 'text',
@@ -276,7 +277,7 @@ $(document).ready(function() {
     },
     async: false,
   });
-
+*/
   //Robot skills high score - from vexdb
   $.ajax({
     url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
