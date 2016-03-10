@@ -6,7 +6,7 @@ $(document).ready(function() {
 
   //For title, gets team name
   $.ajax({
-    url: 'http://api.vexdb.io/get_teams?team=' + teamNumber,
+    url: 'http://api.vexdb.io/v1/get_teams?team=' + teamNumber,
     dataType: 'json',
     success: function(jd) {
       $('#title').append('<p>Team ' + teamNumber + ', ' + jd.result[0].team_name + '</p>');
@@ -280,7 +280,7 @@ $(document).ready(function() {
   });
   //Robot skills high score - from vexdb
   $.ajax({
-    url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
+    url: 'http://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
     dataType: 'json',
     success: function(jd) {
       $('#robohighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
@@ -290,7 +290,7 @@ $(document).ready(function() {
 
   //programming skills high score - from vexdb
   $.ajax({
-    url: 'http://api.vexdb.io/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
+    url: 'http://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
     dataType: 'json',
     success: function(jd) {
       $('#proghighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
