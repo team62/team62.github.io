@@ -5,7 +5,7 @@ $(document).ready(function() {
   var skillsCompetition = false;
 
   if(teamNumber==undefined)
-    teamNumber="1104Z"
+    teamNumber="62"
 
   //For title, gets team name
   $.ajax({
