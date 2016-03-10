@@ -335,8 +335,6 @@ $(document).ready(function() {
 });
 
 function CSVToArray(strData, strDelimiter) {
-  if(strData==undefined)
-    return(new Array());
   // Check to see if the delimiter is defined. If not,
   // then default to comma.
   strDelimiter = (strDelimiter || ",");
@@ -391,6 +389,8 @@ function CSVToArray(strData, strDelimiter) {
 }
 
 function CSV2JSON(csv) {
+  if(csv==undefined || csv=="")
+    return "";
   var array = CSVToArray(csv);
   var objArray = [];
   for (var i = 1; i < array.length; i++) {
