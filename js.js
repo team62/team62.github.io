@@ -35,7 +35,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(jd) {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
-        if ((jd.result[0].name).indexOf("Skills") > 0 || (jd.result[1].name).indexOf("skills") > 0) {
+        if ((jd.result[0].name).indexOf("Skills") > 0) {
           skillsCompetition = true;
         }
         mySKU = jd.result[0].sku;
