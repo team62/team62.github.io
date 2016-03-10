@@ -4,7 +4,7 @@ $(document).ready(function() {
   var competingCurrently = true;
   var skillsCompetition = false;
 
-  if($.urlParam('team')!=null) {
+  if($.urlParam('team')=="") {
     teamNumber = $.urlParam('team');
   }
 
