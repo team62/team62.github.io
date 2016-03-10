@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var teamNumber = "1104Z";
-  var mySKU = "RE-VRC-16-3709";
+  var mySKU;
   var competingCurrently = true;
   var skillsCompetition = false;
 
@@ -14,7 +14,6 @@ $(document).ready(function() {
     async: false,
   });
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
-  /*
   $.ajax({
     url: 'http://api.vexdb.io/get_events?team=' + teamNumber + '&status=current',
     dataType: 'json',
@@ -45,7 +44,6 @@ $(document).ready(function() {
       async: false,
     });
   }
-  */
   //Handle matches from RobotEvents
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=1',
