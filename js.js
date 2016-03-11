@@ -1,6 +1,6 @@
 $(document).ready(function() {
   var teamNumber = getUrlParameter('team');
-  var mySKU;
+  var mySKU = getUrlParameter('sku');
   var competingCurrently = true;
   var skillsCompetition = false;
   var accessRobotEvents = false;
@@ -32,7 +32,8 @@ $(document).ready(function() {
         competingCurrently = false;
       } else {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
-        mySKU = jd.result[0].sku;
+        if(mySKU == undefined)
+          mySKU = jd.result[0].sku;
         $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       }
     },
