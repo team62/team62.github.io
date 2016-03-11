@@ -86,7 +86,7 @@ $(document).ready(function() {
             $('#status').append('</div><div style="color:blue;">' + jd[i].blue1 + ", " + jd[i].blue2);
             if (jd[i].blue3 != "")
               $('#status').append(", " + jd[i].blue3);
-            $('#status').append('</div><hr>');
+            $('#status').append('</div>');
             break;
           }
         }
