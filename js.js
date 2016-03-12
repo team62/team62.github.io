@@ -67,9 +67,9 @@ $(document).ready(function() {
     async: false,
     timeout: 5000,
   });
-  //for (division = 1; division<=divisions; division++) {
+  for (division = 1; division<=divisions; division++) {
     $.ajax({
-      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=1' /*+ division*/,
+      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=1' + division,
       dataType: 'text',
       success: function(input) {
         var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -182,7 +182,7 @@ $(document).ready(function() {
       },
       async: false,
     });
-  //}
+  }
   //Handle rankings from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
