@@ -34,7 +34,7 @@ $(document).ready(function() {
       } else {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         if(mySKU == undefined)
-          mySKU = 're-vrc-15-1717';//jd.result[0].sku;
+          mySKU = jd.result[0].sku;
         $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       }
     },
@@ -50,7 +50,6 @@ $(document).ready(function() {
           skillsCompetition = true;
         }
         mySKU = jd.result[0].sku;
-        mySKU = 're-vrc-15-1717';
         $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
