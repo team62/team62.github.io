@@ -176,14 +176,14 @@ $(document).ready(function() {
             scoreshtml += ('</tr>');
           }
         }
-        $('#scores').append(scoreshtml);
         if (lowScore != 5000)
           $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
       },
       async: false,
     });
   }
-  $('#scores').append('</table>');
+  scoreshtml += '</table>';
+  $('#scores').append(scoreshtml);
   //Handle rankings from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
@@ -221,13 +221,12 @@ $(document).ready(function() {
     },
     async: false,
   });
-
+  scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
   //Handle rankings - from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
     dataType: 'text',
     success: function(input) {
-      scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
       var jd = jQuery.parseJSON(CSV2JSON(input));
       for (i = 0; i < jd.length - 1; i++) {
         if (jd[i].teamnum == teamNumber) {
