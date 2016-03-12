@@ -62,7 +62,10 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
     dataType: 'json',
     success: function(jd) {
-      divisions = jd.result[0].divisons.length;
+      if(jd.result[0].divisons.length == undefined)
+        divisions = 1;
+      else
+        divisions = jd.result[0].divisons.length;
     },
     async: false,
     timeout: 5000,
