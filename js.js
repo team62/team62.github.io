@@ -35,6 +35,7 @@ $(document).ready(function() {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         if(mySKU == undefined)
           mySKU = 're-vrc-15-1717';//jd.result[0].sku;
+        divisions = jd.result[0].divisions.length;
         $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       }
     },
@@ -50,6 +51,8 @@ $(document).ready(function() {
           skillsCompetition = true;
         }
         mySKU = jd.result[0].sku;
+        mySKU = 're-vrc-15-1717';
+        divisions = jd.result[0].divisions.length;
         $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
@@ -62,7 +65,7 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
     dataType: 'json',
     success: function(jd) {
-      divisions = jd.result[0].divisions.length;
+
     },
     async: false,
     timeout: 5000,
