@@ -68,7 +68,7 @@ $(document).ready(function() {
     async: false,
     timeout: 5000,
   });
-  $('#scores').append('<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>');
+  scoreshtml='<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>');
   for (division = 1; division<=divisions; division++) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
@@ -221,7 +221,6 @@ $(document).ready(function() {
     },
     async: false,
   });
-  scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
   //Handle rankings - from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
