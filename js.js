@@ -67,7 +67,7 @@ $(document).ready(function() {
     async: false,
     timeout: 5000,
   });
-  for(division : divisions) {
+  for each (var division in divisions) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
       dataType: 'text',
