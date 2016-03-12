@@ -24,7 +24,7 @@ $(document).ready(function() {
     async: false,
   });
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
-  if(sku == undefined) {
+  if(mySKU == undefined) {
     $.ajax({
       url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=current',
       dataType: 'json',
