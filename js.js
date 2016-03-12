@@ -24,22 +24,24 @@ $(document).ready(function() {
     async: false,
   });
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
-  $.ajax({
-    url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=current',
-    dataType: 'json',
-    success: function(jd) {
-      if (jd.size == 0) {
-        $('#status').append('<p>No Ongoing Tournament/Tournament Ended - Displaying Previous Results</p>');
-        competingCurrently = false;
-      } else {
-        $('#status').append('<p>' + jd.result[0].name + '</p>');
-        if(mySKU == undefined)
-          mySKU = jd.result[0].sku;
-        $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
-      }
-    },
-    async: false,
-  });
+  if(sku == undefined) {
+    $.ajax({
+      url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=current',
+      dataType: 'json',
+      success: function(jd) {
+        if (jd.size == 0) {
+          $('#status').append('<p>No Ongoing Tournament/Tournament Ended - Displaying Previous Results</p>');
+          competingCurrently = false;
+        } else {
+          $('#status').append('<p>' + jd.result[0].name + '</p>');
+          if(mySKU == undefined)
+            mySKU = jd.result[0].sku;
+          $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
+        }
+      },
+      async: false,
+    });
+  }
   if (!competingCurrently) {
     $.ajax({
       url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=past',
