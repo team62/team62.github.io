@@ -247,7 +247,7 @@ $(document).ready(function() {
     },
     async: false,
   });
-  for (division=1; division<divisions; division++) {
+  for (division=1; division<=divisions; division++) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + division,
       dataType: 'text',
