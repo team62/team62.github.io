@@ -5,6 +5,7 @@ $(document).ready(function() {
   var skillsCompetition = false;
   var accessRobotEvents = false;
   var divisions;
+  var divisionsArray;
 
   if (teamNumber == undefined)
     teamNumber = "62"
@@ -76,6 +77,7 @@ $(document).ready(function() {
     dataType: 'json',
     success: function(jd) {
         divisions = jd.result[0].divisions.length;
+        divisionsArray = jd.result[0].divisions;
     },
     async: false,
     timeout: 5000,
@@ -235,32 +237,34 @@ $(document).ready(function() {
   });
 
   //Handle rankings - from robotevents
-  $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
-    dataType: 'text',
-    success: function(input) {
-      scoreshtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
-      var jd = jQuery.parseJSON(CSV2JSON(input));
-      for (i = 0; i < jd.length - 1; i++) {
-        if (jd[i].teamnum == teamNumber) {
-          scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-          scoreshtml += ('<td class=yellow><b>' + jd[i].teamnum + '</b></td>');
-          scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
-          scoreshtml += ('<td class=yellow><b>' + jd[i].wp + '</b></td>');
-          scoreshtml += ('<td class=yellow><b>' + jd[i].sp + '</b></td></tr>');
-        } else {
-          scoreshtml += ('<td>' + jd[i].rank + '</td>');
-          scoreshtml += ('<td>' + jd[i].teamnum + '</td>');
-          scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
-          scoreshtml += ('<td>' + jd[i].wp + '</td>');
-          scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
+  for (division=1; division<divisions; division++) {
+    $.ajax({
+      url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + division,
+      dataType: 'text',
+      success: function(input) {
+        scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button><div class="panel"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
+        var jd = jQuery.parseJSON(CSV2JSON(input));
+        for (i = 0; i < jd.length - 1; i++) {
+          if (jd[i].teamnum == teamNumber) {
+            scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
+            scoreshtml += ('<td class=yellow><b>' + jd[i].teamnum + '</b></td>');
+            scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
+            scoreshtml += ('<td class=yellow><b>' + jd[i].wp + '</b></td>');
+            scoreshtml += ('<td class=yellow><b>' + jd[i].sp + '</b></td></tr>');
+          } else {
+            scoreshtml += ('<td>' + jd[i].rank + '</td>');
+            scoreshtml += ('<td>' + jd[i].teamnum + '</td>');
+            scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
+            scoreshtml += ('<td>' + jd[i].wp + '</td>');
+            scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
+          }
         }
-      }
-      scoreshtml += '</table>';
-      $('#rankings').append(scoreshtml);
-    },
-    async: false,
-  });
+        scoreshtml += '</table></div>';
+        $('#rankings').append(scoreshtml);
+      },
+      async: false,
+    });
+  }
   //handle robot skills - from RobotEvents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
