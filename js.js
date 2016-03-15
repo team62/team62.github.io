@@ -392,7 +392,7 @@ $(document).ready(function() {
   jumpTo(teamDivision);
 });
 
-function jumpto(anchor){
+function jumpTo(anchor){
     window.location.href = "#"+anchor;
 }
 
