@@ -254,10 +254,10 @@ $(document).ready(function() {
       success: function(input) {
         scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button>'
         if(teamDivision == divisionsArray[division-1])
-          scoreshtml += '<div class="panel show">'
+          scoreshtml += '<div class="panel show"';
         else
-          scoreshtml += '<div class="panel">'
-        scoreshtml += '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
+          scoreshtml += '<div class="panel"';
+        scoreshtml += 'id="' + divsionsArray[division-1] + '"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
         var jd = jQuery.parseJSON(CSV2JSON(input));
         for (i = 0; i < jd.length - 1; i++) {
           if (jd[i].teamnum == teamNumber) {
@@ -389,7 +389,12 @@ $(document).ready(function() {
           this.nextElementSibling.classList.toggle("show");
     }
   }
+  jumpTo(teamDivision);
 });
+
+function jumpto(anchor){
+    window.location.href = "#"+anchor;
+}
 
 function CSVToArray(strData, strDelimiter) {
   // Check to see if the delimiter is defined. If not,
