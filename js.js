@@ -6,6 +6,7 @@ $(document).ready(function() {
   var accessRobotEvents = false;
   var divisions;
   var divisionsArray;
+  var teamDivision;
 
   if (teamNumber == undefined)
     teamNumber = "62"
@@ -237,12 +238,26 @@ $(document).ready(function() {
   });
 
   //Handle rankings - from robotevents
+
+  $.ajax({
+    url: 'http://api.vexdb.io/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
+    dataType: 'json',
+    success: function(jd) {
+      teamDivision = jd.result[0].division;
+    },
+    async: false,
+  });
   for (division=1; division<divisions; division++) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + division,
       dataType: 'text',
       success: function(input) {
-        scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button><div class="panel"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
+        scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button>'
+        if(teamDivision == divisionsArray[division-1]);
+          scoreshtml += '<div class="panel show">'
+        else
+          scoreshtml += '<div class="panel">'
+        scoreshtml += '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
         var jd = jQuery.parseJSON(CSV2JSON(input));
         for (i = 0; i < jd.length - 1; i++) {
           if (jd[i].teamnum == teamNumber) {
