@@ -57,6 +57,19 @@ $(document).ready(function() {
         timeout: 5000,
       });
     }
+  } else {
+    $.ajax({
+      url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
+      dataType: 'json',
+      success: function(jd) {
+        $('#status').append('<p>' + jd.result[0].name + '</p>');
+        mySKU = jd.result[0].sku;
+        $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
+      },
+      async: false,
+      timeout: 5000,
+    });
+  }
   }
   //Handle matches from RobotEvents
 
