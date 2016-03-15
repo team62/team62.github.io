@@ -240,7 +240,7 @@ $(document).ready(function() {
   //Handle rankings - from robotevents
 
   $.ajax({
-    url: 'http://api.vexdb.io/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
+    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
     dataType: 'json',
     success: function(jd) {
       teamDivision = jd.result[0].division;
