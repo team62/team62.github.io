@@ -70,7 +70,6 @@ $(document).ready(function() {
       timeout: 5000,
     });
   }
-  }
   //Handle matches from RobotEvents
 
   $.ajax({
