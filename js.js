@@ -81,6 +81,8 @@ $(document).ready(function() {
     async: false,
     timeout: 5000,
   });
+  var highScore = 0;
+  var lowScore = 5000;
   scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
@@ -119,8 +121,6 @@ $(document).ready(function() {
             }
           }
         }
-        var highScore = 0;
-        var lowScore = 5000;
         for (i = 0; i < jd.length - 1; i++) {
           if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
             scoreshtml += ('<tr>');
@@ -189,16 +189,14 @@ $(document).ready(function() {
             scoreshtml += ('</tr>');
           }
         }
-
-
-        if (lowScore != 5000)
-          $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
       },
       async: false,
     });
   }
   scoreshtml += '</table>';
   $('#scores').append(scoreshtml);
+  if (lowScore != 5000)
+    $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
   //Handle rankings from robotevents
   $.ajax({
     url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
