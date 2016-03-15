@@ -9,11 +9,6 @@ $(document).ready(function() {
   if (teamNumber == undefined)
     teamNumber = "62"
 
-  $('#indexLinks').append('<a href=rankings.html?team=' + teamNumber + '>Rankings</a> <a href=skills.html?team=' + teamNumber + '>Skills</a>');
-  $('#skillsLinks').append('<a href=index.html?team=' + teamNumber + '>Main Page</a> <a href=rankings.html?team=' + teamNumber + '>Rankings</a>');
-  $('#rankingsLinks').append('<a href=index.html?team=' + teamNumber + '>Main Page</a> <a href=skills.html?team=' + teamNumber + '>Skills</a>');
-
-
   //For title, gets team name
   $.ajax({
     url: 'http://api.vexdb.io/v1/get_teams?team=' + teamNumber,
@@ -70,8 +65,12 @@ $(document).ready(function() {
       timeout: 5000,
     });
   }
-  //Handle matches from RobotEvents
 
+  $('#indexLinks').append('<a href=rankings.html?team=' + teamNumber + '&sku=' + mySKU + '>Rankings</a> <a href=skills.html?team=' + teamNumber + '&sku=' + mySKU + '>Skills</a>');
+  $('#skillsLinks').append('<a href=index.html?team=' + teamNumber + '&sku=' + mySKU + '>Main Page</a> <a href=rankings.html?team=' + teamNumber + '&sku=' + mySKU + '>Rankings</a>');
+  $('#rankingsLinks').append('<a href=index.html?team=' + teamNumber + '&sku=' + mySKU + '>Main Page</a> <a href=skills.html?team=' + teamNumber + '&sku=' + mySKU + '>Skills</a>');
+
+  //Handle matches from RobotEvents
   $.ajax({
     url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
     dataType: 'json',
