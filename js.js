@@ -253,7 +253,7 @@ $(document).ready(function() {
       dataType: 'text',
       success: function(input) {
         scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button>'
-        if(teamDivision == divisionsArray[division-1]);
+        if(teamDivision == divisionsArray[division-1])
           scoreshtml += '<div class="panel show">'
         else
           scoreshtml += '<div class="panel">'
