@@ -262,13 +262,13 @@ $(document).ready(function() {
         for (i = 0; i < jd.length - 1; i++) {
           if (jd[i].teamnum == teamNumber) {
             scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-            scoreshtml += ('<td class=yellow><b><a href=http://vexdb.io/teams/view/' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></b></td>');
+            scoreshtml += ('<td class=yellow><b><a class="black" href=http://vexdb.io/teams/view/' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></b></td>');
             scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
             scoreshtml += ('<td class=yellow><b>' + jd[i].wp + '</b></td>');
             scoreshtml += ('<td class=yellow><b>' + jd[i].sp + '</b></td></tr>');
           } else {
             scoreshtml += ('<td>' + jd[i].rank + '</td>');
-            scoreshtml += ('<td><a href=http://vexdb.io/teams/view/' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></td>');
+            scoreshtml += ('<td><a class="black" href=http://vexdb.io/teams/view/' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></td>');
             scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
             scoreshtml += ('<td>' + jd[i].wp + '</td>');
             scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
