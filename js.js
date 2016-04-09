@@ -202,7 +202,7 @@ $(document).ready(function() {
     $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
   //Handle rankings from robotevents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1' + teamDivisionNumber,
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -219,7 +219,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1',
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
