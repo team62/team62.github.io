@@ -374,7 +374,7 @@ $(document).ready(function() {
           if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
             differience = jd[i].matchnum - currentMatchNumber;
             if(differience == 0)
-              $('#currentmatch').append('<b>Playing Now</b>');
+              $('#currentmatch').append('<b> Playing Now</b>');
             else
               $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches');
             break;
