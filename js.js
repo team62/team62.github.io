@@ -380,7 +380,7 @@ $(document).ready(function() {
             } else if (jd[i].round == 5) {
               currentMatchTitle=('F ');
             }
-            $('#currentmatch').append('Current Match Number: ' currentMatchTitle + ' ' + jd[i].matchnum);
+            $('#currentmatch').append('Current Match Number: ' + currentMatchTitle + jd[i].matchnum);
             break;
           }
         }
