@@ -185,6 +185,8 @@ $(document).ready(function() {
               }
               if (parseInt(jd[i].redscore) > parseInt(jd[i].bluescore)) {
                 scoreshtml += ('<td class="victory">WIN</td>');
+              } else if (parseInt(jd[i].redscore) == parseInt(jd[i].bluescore)) {
+                scoreshtml += ('<td class="tie">TIE</td>');
               } else {
                 scoreshtml += ('<td class="yellow">LOSS</td>');
               }
@@ -197,6 +199,8 @@ $(document).ready(function() {
               }
               if (parseInt(jd[i].bluescore) > parseInt(jd[i].redscore)) {
                 scoreshtml += ('<td class="victory">WIN</td>');
+              } else if (parseInt(jd[i].redscore) == parseInt(jd[i].bluescore)) {
+                scoreshtml += ('<td class="tie">TIE</td>');
               } else {
                 scoreshtml += ('<td class="yellow">LOSS</td>');
               }
