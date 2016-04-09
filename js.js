@@ -130,8 +130,8 @@ $(document).ready(function() {
                 teamshtml+=(", " + jd[i].red3);
               teamshtml+=('</div><div style="color:blue;">' + jd[i].blue1 + ", " + jd[i].blue2);
               if (jd[i].blue3 != undefined)
-                teamshtml+=.append(", " + jd[i].blue3);
-              teamshtml+=.append('</div>');
+                teamshtml+=(", " + jd[i].blue3);
+              teamshtml+=('</div>');
               $('#status').append(teamshtml);
               break;
             }
