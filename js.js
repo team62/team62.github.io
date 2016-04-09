@@ -7,6 +7,7 @@ $(document).ready(function() {
   var divisions;
   var divisionsArray;
   var teamDivision;
+  var teamDivisionNumber;
 
   if (teamNumber == undefined)
     teamNumber = "62"
@@ -244,6 +245,10 @@ $(document).ready(function() {
     dataType: 'json',
     success: function(jd) {
       teamDivision = jd.result[0].division;
+      for (var i = 0; i < divisionsArray.length; i++) {
+        if(divisionsArray[i]==teamDivision)
+          teamDivisionNumber = i+1;
+      }
     },
     async: false,
   });
@@ -352,7 +357,7 @@ $(document).ready(function() {
   });
   if (!skillsCompetition) {
     $.ajax({
-      url: ('http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + teamDivision),
+      url: ('http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber),
       dataType: 'text',
       success: function(input) {
         var jd = jQuery.parseJSON(CSV2JSON(input));
