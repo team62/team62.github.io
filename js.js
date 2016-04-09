@@ -101,7 +101,7 @@ $(document).ready(function() {
   scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
-      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
+      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
       dataType: 'text',
       success: function(input) {
         var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -214,7 +214,7 @@ $(document).ready(function() {
     $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
   //Handle rankings from robotevents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=1' + teamDivisionNumber,
+    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
