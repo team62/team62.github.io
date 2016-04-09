@@ -117,6 +117,8 @@ $(document).ready(function() {
                 $('#status').append('SF ');
               } else if (jd[i].round == 5) {
                 $('#status').append('F ');
+              } else if (jd[i].round == 6) {
+              $('#status').append('R16 ');
               }
               $('#status').append(jd[i].matchnum);
               if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber) {
@@ -149,6 +151,8 @@ $(document).ready(function() {
               scoreshtml += ('SF ');
             } else if (jd[i].round == 5) {
               scoreshtml += ('F ');
+            } else if (jd[i].round == 6) {
+              scoreshtml += ('R16 ');
             }
             scoreshtml += (jd[i].matchnum + '</td>');
             r1 = jd[i].red1;
@@ -379,6 +383,8 @@ $(document).ready(function() {
               currentMatchTitle=('SF ');
             } else if (jd[i].round == 5) {
               currentMatchTitle=('F ');
+            } else if (jd[i].round == 6) {
+              currentMatchTitle=('R16 ');
             }
             $('#currentmatch').append('Current Match Number: ' + currentMatchTitle + jd[i].matchnum);
             break;
