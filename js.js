@@ -84,12 +84,24 @@ $(document).ready(function() {
     async: false,
     timeout: 5000,
   });
+  $.ajax({
+    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
+    dataType: 'json',
+    success: function(jd) {
+      teamDivision = jd.result[jd.length-1].division;
+      for (var i = 0; i < divisionsArray.length; i++) {
+        if(divisionsArray[i]==teamDivision)
+          teamDivisionNumber = i+1;
+      }
+    },
+    async: false,
+  });
   var highScore = 0;
   var lowScore = 5000;
   scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
-      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
+      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
       dataType: 'text',
       success: function(input) {
         var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -239,19 +251,6 @@ $(document).ready(function() {
   });
 
   //Handle rankings - from robotevents
-
-  $.ajax({
-    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
-    dataType: 'json',
-    success: function(jd) {
-      teamDivision = jd.result[0].division;
-      for (var i = 0; i < divisionsArray.length; i++) {
-        if(divisionsArray[i]==teamDivision)
-          teamDivisionNumber = i+1;
-      }
-    },
-    async: false,
-  });
   for (division=1; division<=divisions; division++) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + division,
