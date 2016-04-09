@@ -370,7 +370,17 @@ $(document).ready(function() {
         for (i = 0; i < jd.length; i++) {
           if (jd[i].scored == 'False') {
             currentMatchNumber = jd[i].matchnum;
-            $('#currentmatch').append('Current Match Number: ' + jd[i].matchnum);
+            currentMatchTitle = "";
+            if (jd[i].round == 2) {
+              currentMatchTitle=('QM ');
+            } else if (jd[i].round == 3) {
+              currentMatchTitle=('QF ');
+            } else if (jd[i].round == 4) {
+              currentMatchTitle=('SF ');
+            } else if (jd[i].round == 5) {
+              currentMatchTitle=('F ');
+            }
+            $('#currentmatch').append('Current Match Number: ' currentMatchTitle + ' ' + jd[i].matchnum);
             break;
           }
         }
