@@ -244,7 +244,7 @@ $(document).ready(function() {
     url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
     dataType: 'json',
     success: function(jd) {
-      teamDivision = jd.result[0].division;
+      teamDivision = jd.result[jd.length-1].division;
       for (var i = 0; i < divisionsArray.length; i++) {
         if(divisionsArray[i]==teamDivision)
           teamDivisionNumber = i+1;
