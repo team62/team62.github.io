@@ -127,7 +127,7 @@ $(document).ready(function() {
               $('#status').append(', ' + jd[i].field);
               $('#status').append('<br><div style="color:red;">' + jd[i].red1 + ", " + jd[i].red2);
               if (jd[i].red3 != undefined)
-                $('#status').append(", " + jd.result[i].red3);
+                $('#status').append(", " + jd[i].red3);
               $('#status').append('</div><div style="color:blue;">' + jd[i].blue1 + ", " + jd[i].blue2);
               if (jd[i].blue3 != undefined)
                 $('#status').append(", " + jd[i].blue3);
