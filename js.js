@@ -94,7 +94,7 @@ $(document).ready(function() {
         var jd = jQuery.parseJSON(CSV2JSON(input));
         for (i = 0; i < jd.length; i++) {
           if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
-            if (jd[i].scored == 0) {
+            if (jd[i].scored == "False") {
               $('#status').append('<i>Next Match:</i> ');
               if (jd[i].round == 2) {
                 $('#status').append('QM ');
@@ -161,7 +161,7 @@ $(document).ready(function() {
             else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
             scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
             scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
-            if (jd[i].scored == 0)
+            if (jd[i].scored == "False")
               scoreshtml += ('<td>Unplayed</td>');
             else if ((jd[i].red1 == teamNumber) || (jd[i].red2 == teamNumber) || (jd[i].red3 == teamNumber)) {
               if (parseInt(jd[i].redscore) > highScore) {
