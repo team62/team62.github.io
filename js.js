@@ -400,7 +400,7 @@ $(document).ready(function() {
           if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
             differience = jd[i].matchnum - currentMatchNumber;
             var nextMatchTime = new Date(jd[i].timescheduled);
-            var timeUntil = nextMatchTime - Date.now();
+            var timeUntil = nextMatchTime.getMilliseconds() - Date.now().getMilliseconds();
             var timeUntilSeconds = parseInt(timeUntil/1000);
             var timeUntilMins = parseInt(timeUntilSeconds/60);
             var timeUntilHours = parseInt(timeUntilMins/60);
