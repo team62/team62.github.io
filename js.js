@@ -180,7 +180,8 @@ $(document).ready(function() {
               else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
               scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
               scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
-              scoreshtml += ('<td>'+jd[i].timescheduled+'</td>');
+              var options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+              scoreshtml += ('<td>'+(new Date(jd[i].timescheduled)).toLocaleString('en-US').+'</td>');
               if (jd[i].scored == "False")
                 scoreshtml += ('<td>Unplayed</td>');
               else if ((jd[i].red1 == teamNumber) || (jd[i].red2 == teamNumber) || (jd[i].red3 == teamNumber)) {
