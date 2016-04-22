@@ -407,7 +407,7 @@ $(document).ready(function() {
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
-              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, ' + timeUntilHours + ':' + timeUntilMins%60);
+              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, in ' + (timeUntilHours>0?''+timeUntilHours+' hours ':'') + timeUntilMins%60 + 'mins.');
             break;
           }
         }
