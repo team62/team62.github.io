@@ -403,9 +403,6 @@ $(document).ready(function() {
             var timeUntilSeconds = timeUntil%1000;
             var timeUntilMins = timeUntilSeconds%60;
             var timeUntilHours = timeUntilMins%60;
-            if(timeUntil.getHours()>0)
-              timeString+=timeUntil.getHours()+":";
-            timeString+=timeUntil.getMinutes();
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
