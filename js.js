@@ -399,7 +399,7 @@ $(document).ready(function() {
           if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
             differience = jd[i].matchnum - currentMatchNumber;
             var nextMatchTime = new Date(jd[i].timescheduled);
-            var timeUntil = new Date(nextMatchTime.getTime() - Date.now().getTime());
+            var timeUntil = new Date(nextMatchTime - Date.now());
             var timeString;
             if(timeUntil.getHours()>0)
               timeString+=timeUntil.getHours()+":";
