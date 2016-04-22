@@ -98,7 +98,7 @@ $(document).ready(function() {
   });
   var highScore = 0;
   var lowScore = 5000;
-  scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Time</th><th>Outcome</th></tr>';
+  scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
       url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
@@ -180,8 +180,11 @@ $(document).ready(function() {
               else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
               scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
               scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
+<<<<<<< HEAD
               var options = { weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' };
               scoreshtml += ('<td>'+(new Date(jd[i].timescheduled)).toLocaleString('en-US', options)+'</td>');
+=======
+>>>>>>> parent of 039b7a8... add times
               if (jd[i].scored == "False")
                 scoreshtml += ('<td>Unplayed</td>');
               else if ((jd[i].red1 == teamNumber) || (jd[i].red2 == teamNumber) || (jd[i].red3 == teamNumber)) {
@@ -399,6 +402,7 @@ $(document).ready(function() {
         for(i = 0; i < jd.length; i++) {
           if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
             differience = jd[i].matchnum - currentMatchNumber;
+<<<<<<< HEAD
             var nextMatchTime = new Date(jd[i].timescheduled);
             var timeUntil = nextMatchTime.getMilliseconds() - Date.now();
             var timeUntilSeconds = parseInt(timeUntil/1000);
@@ -408,6 +412,12 @@ $(document).ready(function() {
               $('#currentmatch').append('<b> Playing Now</b>');
             else
               $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, in ' + (timeUntilHours>0?''+timeUntilHours+' hours ':'') + timeUntilMins%60 + ' mins.');
+=======
+            if(differience == 0)
+              $('#currentmatch').append('<b> Playing Now</b>');
+            else
+              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches');
+>>>>>>> parent of 039b7a8... add times
             break;
           }
         }
