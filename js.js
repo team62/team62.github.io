@@ -401,9 +401,9 @@ $(document).ready(function() {
             differience = jd[i].matchnum - currentMatchNumber;
             var nextMatchTime = new Date(jd[i].timescheduled);
             var timeUntil = nextMatchTime - Date.now();
-            var timeUntilSeconds = timeUntil%1000;
-            var timeUntilMins = timeUntilSeconds%60;
-            var timeUntilHours = timeUntilMins%60;
+            var timeUntilSeconds = timeUntil/1000;
+            var timeUntilMins = timeUntilSeconds/60;
+            var timeUntilHours = timeUntilMins/60;
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
