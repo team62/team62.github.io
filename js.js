@@ -399,15 +399,17 @@ $(document).ready(function() {
           if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
             differience = jd[i].matchnum - currentMatchNumber;
             var nextMatchTime = new Date(jd[i].timescheduled);
-            var timeUntil = new Date(nextMatchTime - Date.now());
-            var timeString;
+            var timeUntil = nextMatchTime - Date.now();
+            var timeUntilSeconds = timeUntil%1000;
+            var timeUntilMins = timeUntilSeconds%60;
+            var timeUntilHours = timeUntilMins%60;
             if(timeUntil.getHours()>0)
               timeString+=timeUntil.getHours()+":";
             timeString+=timeUntil.getMinutes();
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
-              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, ' + timeString);
+              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, ' + timeUntilHours + ':' + timeUntilMins);
             break;
           }
         }
