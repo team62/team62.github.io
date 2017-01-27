@@ -11,6 +11,16 @@ $(document).ready(function() {
 
   if (teamNumber == undefined)
     teamNumber = "62"
+    $(function() {
+  $('body').append($('<iframe></iframe>', {
+    css: { display: none },
+    src: 'https://www.robotevents.com/robot-competitions/vex-robotics-competition/RE-VRC-16-1002.html',
+    id: 'my_page',
+    load: function() {
+      var html = $('#my_page').contents().find('skills').html();
+      console.log(html);
+    }
+  });
 
   //For title, gets team name
   $.ajax({
