@@ -8,7 +8,7 @@ $(document).ready(function() {
   var divisionsArray;
   var teamDivision;
   var teamDivisionNumber;
-
+  document.domain = "robotevents.com";
   if (teamNumber == undefined)
     teamNumber = "62"
   $('body').append($('<iframe></iframe>', {
