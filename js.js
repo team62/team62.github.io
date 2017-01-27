@@ -12,7 +12,7 @@ $(document).ready(function() {
     teamNumber = "62"
 
 
-  $.getJSON('http://whateverorigin.org/get?url=' + encodeURIComponent('http://google.com') + '&callback=?', function(data){
+  $.getJSON('https://whateverorigin.org/get?url=' + encodeURIComponent('https://google.com') + '&callback=?', function(data){
   	console.log(data.contents);
   });
 
