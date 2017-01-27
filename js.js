@@ -19,7 +19,7 @@ $(document).ready(function() {
     load: function() {
       var html = $('#my_page').contents().find('skills').html();
       console.log(html);
-    }
+    })
   });
 
   //For title, gets team name
