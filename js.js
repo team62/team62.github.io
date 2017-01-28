@@ -106,7 +106,7 @@ $(document).ready(function() {
         if(jd!=null) {
           for (i = 0; i < jd.length; i++) {
             if (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber) {
-              if (jd.result[i].scored == "False") {
+              if (jd.result[i].scored == 0) {
                 $('#status').append('<i>Next Match:</i> ');
                 if (jd.result[i].round == 2) {
                   $('#status').append('QM ');
@@ -179,7 +179,7 @@ $(document).ready(function() {
               scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
               scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
               scoreshtml += ('<td>'+jd.result[i].timescheduled+'</td>');
-              if (jd.result[i].scored == "False")
+              if (jd.result[i].scored == 0)
                 scoreshtml += ('<td>Unplayed</td>');
               else if ((jd.result[i].red1 == teamber) || (jd.result[i].red2 == teamber) || (jd.result[i].red3 == teamber)) {
                 if (parseInt(jd.result[i].redscore) > highScore) {
@@ -371,7 +371,7 @@ $(document).ready(function() {
         currentMatchNumber = 0;
         differience = 0;
         for (i = 0; i < jd.length; i++) {
-          if (jd.result[i].scored == 'False') {
+          if (jd.result[i].scored == 0) {
             currentMatchNumber = jd.result[i].matchnum;
             currentMatchTitle = "";
             if (jd.result[i].round == 2) {
@@ -390,7 +390,7 @@ $(document).ready(function() {
           }
         }
         for(i = 0; i < jd.length; i++) {
-          if(jd.result[i].scored == 'False' && (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber)) {
+          if(jd.result[i].scored == 0 && (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber)) {
             differience = jd.result[i].matchnum - currentMatchNumber;
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
