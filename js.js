@@ -229,11 +229,11 @@ $(document).ready(function() {
     success: function(jd) {
       if (jd.length < 3) {} else {
         for (i = 0; i < 3; i++) {
-          $('#' + (i + 1)).append('<td>' + jd[i].result.result.rank + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].result.result.team + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].result.result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].result.result.wp + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].result.result.sp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.rank + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.team + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.wp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.sp + '</td>');
         }
       }
     },
@@ -246,11 +246,11 @@ $(document).ready(function() {
       if (jd.length == 0) {} else {
         for (i = 0; i < jd.length; i++) {
           if (jd[i].result.team == teamber) {
-            $('#us').append('<td><b>' + jd[i].result.result.rank + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].result.result.team + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].result.result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].result.result.wp + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].result.result.sp + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.rank + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.team + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.wp + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.sp + '</b></td>');
           }
         }
       }
