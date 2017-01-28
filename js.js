@@ -11,12 +11,6 @@ $(document).ready(function() {
   if (teamNumber == undefined)
     teamNumber = "62"
 
-
-  $.getJSON('https://whateverorigin.org/get?url=' + encodeURIComponent('https://google.com') + '&callback=?', function(data){
-  	console.log(data.contents);
-  });
-
-
   //For title, gets team name
   $.ajax({
     url: 'http://api.vexdb.io/v1/get_teams?team=' + teamNumber,
@@ -106,10 +100,9 @@ $(document).ready(function() {
   scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Time</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
-      url: 'http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + division,
-      dataType: 'text',
-      success: function(input) {
-        var jd = jQuery.parseJSON(CSV2JSON(input));
+      url: 'https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + division,
+      dataType: 'json',
+      success: function(jd) {
         if(jd!=null) {
           for (i = 0; i < jd.length; i++) {
             if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
@@ -231,10 +224,9 @@ $(document).ready(function() {
     $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
   //Handle rankings from robotevents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
-    dataType: 'text',
-    success: function(input) {
-      var jd = jQuery.parseJSON(CSV2JSON(input));
+    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivisionNumber,
+    dataType: 'json',
+    success: function(jd) {
       if (jd.length < 3) {} else {
         for (i = 0; i < 3; i++) {
           $('#' + (i + 1)).append('<td>' + jd[i].rank + '</td>');
@@ -248,10 +240,9 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber,
-    dataType: 'text',
-    success: function(input) {
-      var jd = jQuery.parseJSON(CSV2JSON(input));
+    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivisionNumber,
+    dataType: 'json',
+    success: function(jd) {
       if (jd.length == 0) {} else {
         for (i = 0; i < jd.length; i++) {
           if (jd[i].teamnum == teamNumber) {
@@ -270,16 +261,15 @@ $(document).ready(function() {
   //Handle rankings - from robotevents
   for (division=1; division<=divisions; division++) {
     $.ajax({
-      url: 'http://ajax.robotevents.com/tm/results/rankings/?format=csv&sku=' + mySKU + '&div=' + division,
-      dataType: 'text',
-      success: function(input) {
+      url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + division,
+      dataType: 'json',
+      success: function(jd) {
         scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button>'
         if(teamDivision == divisionsArray[division-1])
           scoreshtml += '<div class="panel show"';
         else
           scoreshtml += '<div class="panel"';
         scoreshtml += 'id="' + divisionsArray[division-1] + '"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
-        var jd = jQuery.parseJSON(CSV2JSON(input));
         if(jd!=null) {
           for (i = 0; i < jd.length - 1; i++) {
             if (jd[i].teamnum == teamNumber) {
@@ -305,8 +295,8 @@ $(document).ready(function() {
   }
   //handle robot skills - from RobotEvents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_robot/?format=csv&sku=' + mySKU + '&div=',
-    dataType: 'text',
+    url: 'https://api.vexdb.io/v1/get_skills?sku=' + mySKU,
+    dataType: 'json',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
@@ -331,7 +321,7 @@ $(document).ready(function() {
 
   //handle programming sills - from robotevents
   $.ajax({
-    url: 'http://ajax.robotevents.com/tm/results/skills_programming/?format=csv&sku=' + mySKU + '&div=',
+    url: 'https://api.vexdb.io/v1/get_skills?sku=' + mySKU,
     dataType: 'text',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
@@ -375,10 +365,9 @@ $(document).ready(function() {
   });
   if (!skillsCompetition) {
     $.ajax({
-      url: ('http://ajax.robotevents.com/tm/results/matches/?format=csv&sku=' + mySKU + '&div=' + teamDivisionNumber),
+      url: ('https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + teamDivisionNumber),
       dataType: 'text',
-      success: function(input) {
-        var jd = jQuery.parseJSON(CSV2JSON(input));
+      success: function(jd) {
         currentMatchNumber = 0;
         differience = 0;
         for (i = 0; i < jd.length; i++) {
