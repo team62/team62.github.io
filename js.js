@@ -322,7 +322,7 @@ $(document).ready(function() {
   //handle programming sills - from robotevents
   $.ajax({
     url: 'https://api.vexdb.io/v1/get_skills?sku=' + mySKU,
-    dataType: 'text',
+    dataType: 'json',
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
@@ -366,7 +366,7 @@ $(document).ready(function() {
   if (!skillsCompetition) {
     $.ajax({
       url: ('https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + teamDivision),
-      dataType: 'text',
+      dataType: 'json',
       success: function(jd) {
         currentMatchNumber = 0;
         differience = 0;
