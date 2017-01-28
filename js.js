@@ -224,7 +224,7 @@ $(document).ready(function() {
     $('#highlowscore').append('<p>High Score: ' + highScore + ', Low Score: ' + lowScore + '</p>');
   //Handle rankings from robotevents
   $.ajax({
-    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivisionNumber,
+    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivision,
     dataType: 'json',
     success: function(jd) {
       if (jd.size < 3) {} else {
@@ -240,7 +240,7 @@ $(document).ready(function() {
     async: false,
   });
   $.ajax({
-    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivisionNumber,
+    url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivision,
     dataType: 'json',
     success: function(jd) {
       if (jd.length == 0) {} else {
@@ -365,7 +365,7 @@ $(document).ready(function() {
   });
   if (!skillsCompetition) {
     $.ajax({
-      url: ('https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + teamDivisionNumber),
+      url: ('https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + teamDivision),
       dataType: 'text',
       success: function(jd) {
         currentMatchNumber = 0;
