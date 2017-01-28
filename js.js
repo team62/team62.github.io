@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  var teamNumber = getUrlParameter('team');
+  var teamber = getUrlParameter('team');
   var mySKU = getUrlParameter('sku');
   var competingCurrently = true;
   var skillsCompetition = false;
@@ -8,22 +8,22 @@ $(document).ready(function() {
   var divisionsArray;
   var teamDivision;
   var teamDivisionNumber;
-  if (teamNumber == undefined)
-    teamNumber = "62"
+  if (teamber == undefined)
+    teamber = "62"
 
   //For title, gets team name
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_teams?team=' + teamNumber,
+    url: 'http://api.vexdb.io/v1/get_teams?team=' + teamber,
     dataType: 'json',
     success: function(jd) {
-      $('#title').append('<p>Team ' + teamNumber + ', ' + jd.result[0].team_name + '</p>');
+      $('#title').append('<p>Team ' + teamber + ', ' + jd.result[0].team_name + '</p>');
     },
     async: false,
   });
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
   if(mySKU == undefined) {
     $.ajax({
-      url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=current',
+      url: 'http://api.vexdb.io/v1/get_events?team=' + teamber + '&status=current',
       dataType: 'json',
       success: function(jd) {
         if (jd.size == 0) {
@@ -40,7 +40,7 @@ $(document).ready(function() {
     });
     if (!competingCurrently) {
       $.ajax({
-        url: 'http://api.vexdb.io/v1/get_events?team=' + teamNumber + '&status=past',
+        url: 'http://api.vexdb.io/v1/get_events?team=' + teamber + '&status=past',
         dataType: 'json',
         success: function(jd) {
           $('#status').append('<p>' + jd.result[0].name + '</p>');
@@ -68,9 +68,9 @@ $(document).ready(function() {
     });
   }
 
-  $('#indexLinks').append('<a href=rankings.html?team=' + teamNumber + '&sku=' + mySKU + '>Rankings</a> <a href=skills.html?team=' + teamNumber + '&sku=' + mySKU + '>Skills</a>');
-  $('#skillsLinks').append('<a href=index.html?team=' + teamNumber + '&sku=' + mySKU + '>Main Page</a> <a href=rankings.html?team=' + teamNumber + '&sku=' + mySKU + '>Rankings</a>');
-  $('#rankingsLinks').append('<a href=index.html?team=' + teamNumber + '&sku=' + mySKU + '>Main Page</a> <a href=skills.html?team=' + teamNumber + '&sku=' + mySKU + '>Skills</a>');
+  $('#indexLinks').append('<a href=rankings.html?team=' + teamber + '&sku=' + mySKU + '>Rankings</a> <a href=skills.html?team=' + teamber + '&sku=' + mySKU + '>Skills</a>');
+  $('#skillsLinks').append('<a href=index.html?team=' + teamber + '&sku=' + mySKU + '>Main Page</a> <a href=rankings.html?team=' + teamber + '&sku=' + mySKU + '>Rankings</a>');
+  $('#rankingsLinks').append('<a href=index.html?team=' + teamber + '&sku=' + mySKU + '>Main Page</a> <a href=skills.html?team=' + teamber + '&sku=' + mySKU + '>Skills</a>');
 
   //Handle matches from RobotEvents
   $.ajax({
@@ -84,7 +84,7 @@ $(document).ready(function() {
     timeout: 5000,
   });
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamNumber,
+    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamber,
     dataType: 'json',
     success: function(jd) {
       teamDivision = jd.result[0].division;
@@ -105,33 +105,33 @@ $(document).ready(function() {
       success: function(jd) {
         if(jd!=null) {
           for (i = 0; i < jd.length; i++) {
-            if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
-              if (jd[i].scored == "False") {
+            if (jd[i].result.red1 == teamber || jd[i].result.red2 == teamber || jd[i].result.red3 == teamber || jd[i].result.blue1 == teamber || jd[i].result.blue2 == teamber || jd[i].result.blue3 == teamber) {
+              if (jd[i].result.scored == "False") {
                 $('#status').append('<i>Next Match:</i> ');
-                if (jd[i].round == 2) {
+                if (jd[i].result.round == 2) {
                   $('#status').append('QM ');
-                } else if (jd[i].round == 3) {
+                } else if (jd[i].result.round == 3) {
                   $('#status').append('QF ');
-                } else if (jd[i].round == 4) {
+                } else if (jd[i].result.round == 4) {
                   $('#status').append('SF ');
-                } else if (jd[i].round == 5) {
+                } else if (jd[i].result.round == 5) {
                   $('#status').append('F ');
-                } else if (jd[i].round == 6) {
+                } else if (jd[i].result.round == 6) {
                 $('#status').append('R16 ');
                 }
-                $('#status').append(jd[i].matchnum);
-                if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber) {
+                $('#status').append(jd[i].result.matchnum);
+                if (jd[i].result.red1 == teamber || jd[i].result.red2 == teamber || jd[i].result.red3 == teamber) {
                   $('#status').append(", Red");
                 } else {
                   $('#status').append(", Blue");
                 }
-                $('#status').append(', ' + jd[i].field);
-                teamshtml=('<br><div style="color:red;">' + jd[i].red1 + ", " + jd[i].red2);
-                if (jd[i].red3 != undefined)
-                  teamshtml+=(", " + jd[i].red3);
-                teamshtml+=('</div><div style="color:blue;">' + jd[i].blue1 + ", " + jd[i].blue2);
-                if (jd[i].blue3 != undefined)
-                  teamshtml+=(", " + jd[i].blue3);
+                $('#status').append(', ' + jd[i].result.field);
+                teamshtml=('<br><div style="color:red;">' + jd[i].result.red1 + ", " + jd[i].result.red2);
+                if (jd[i].result.red3 != undefined)
+                  teamshtml+=(", " + jd[i].result.red3);
+                teamshtml+=('</div><div style="color:blue;">' + jd[i].result.blue1 + ", " + jd[i].result.blue2);
+                if (jd[i].result.blue3 != undefined)
+                  teamshtml+=(", " + jd[i].result.blue3);
                 teamshtml+=('</div>');
                 $('#status').append(teamshtml);
                 break;
@@ -139,72 +139,72 @@ $(document).ready(function() {
             }
           }
           for (i = 0; i < jd.length - 1; i++) {
-            if (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber) {
+            if (jd[i].result.red1 == teamber || jd[i].result.red2 == teamber || jd[i].result.red3 == teamber || jd[i].result.blue1 == teamber || jd[i].result.blue2 == teamber || jd[i].result.blue3 == teamber) {
               scoreshtml += ('<tr>');
               scoreshtml += ('<td>');
-              if (jd[i].round == 2) {
+              if (jd[i].result.round == 2) {
                 scoreshtml += ('QM ');
-              } else if (jd[i].round == 3) {
+              } else if (jd[i].result.round == 3) {
                 scoreshtml += ('QF ');
-              } else if (jd[i].round == 4) {
+              } else if (jd[i].result.round == 4) {
                 scoreshtml += ('SF ');
-              } else if (jd[i].round == 5) {
+              } else if (jd[i].result.round == 5) {
                 scoreshtml += ('F ');
-              } else if (jd[i].round == 6) {
+              } else if (jd[i].result.round == 6) {
                 scoreshtml += ('R16 ');
               }
-              scoreshtml += (jd[i].matchnum + '</td>');
-              r1 = jd[i].red1;
-              r2 = jd[i].red2;
-              r3 = jd[i].red3;
-              b1 = jd[i].blue1;
-              b2 = jd[i].blue2;
-              b3 = jd[i].blue3;
-              if (r1 == teamNumber)
+              scoreshtml += (jd[i].result.matchnum + '</td>');
+              r1 = jd[i].result.red1;
+              r2 = jd[i].result.red2;
+              r3 = jd[i].result.red3;
+              b1 = jd[i].result.blue1;
+              b2 = jd[i].result.blue2;
+              b3 = jd[i].result.blue3;
+              if (r1 == teamber)
                 r1 = '<b style="font-weight:bolder;">' + r1 + '</b>';
-              if (r2 == teamNumber)
+              if (r2 == teamber)
                 r2 = '<b style="font-weight:bolder;">' + r2 + '</b>';
-              if (r3 == teamNumber)
+              if (r3 == teamber)
                 r3 = '<b style="font-weight:bolder;">' + r3 + '</b>';
-              if (b1 == teamNumber)
+              if (b1 == teamber)
                 b1 = '<b style="font-weight:bolder;">' + b1 + '</b>';
-              if (b2 == teamNumber)
+              if (b2 == teamber)
                 b2 = '<b style="font-weight:bolder;">' + b2 + '</b>';
-              if (b3 == teamNumber)
+              if (b3 == teamber)
                 b3 = '<b style="font-weight:bolder;">' + b3 + '</b>';
-              if (jd[i].red3 == undefined) scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
+              if (jd[i].result.red3 == undefined) scoreshtml += ('<td class="red">' + r1 + ", " + r2 + '</td>');
               else scoreshtml += ('<td class="red">' + r1 + ", " + r2 + ", " + r3 + '</td>');
-              if (jd[i].blue3 == undefined) scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
+              if (jd[i].result.blue3 == undefined) scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + '</td>');
               else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
-              scoreshtml += ('<td class="red">' + jd[i].redscore + '</td>');
-              scoreshtml += ('<td class="blue">' + jd[i].bluescore + '</td>');
-              scoreshtml += ('<td>'+jd[i].timescheduled+'</td>');
-              if (jd[i].scored == "False")
+              scoreshtml += ('<td class="red">' + jd[i].result.redscore + '</td>');
+              scoreshtml += ('<td class="blue">' + jd[i].result.bluescore + '</td>');
+              scoreshtml += ('<td>'+jd[i].result.timescheduled+'</td>');
+              if (jd[i].result.scored == "False")
                 scoreshtml += ('<td>Unplayed</td>');
-              else if ((jd[i].red1 == teamNumber) || (jd[i].red2 == teamNumber) || (jd[i].red3 == teamNumber)) {
-                if (parseInt(jd[i].redscore) > highScore) {
-                  highScore = parseInt(jd[i].redscore)
+              else if ((jd[i].result.red1 == teamber) || (jd[i].result.red2 == teamber) || (jd[i].result.red3 == teamber)) {
+                if (parseInt(jd[i].result.redscore) > highScore) {
+                  highScore = parseInt(jd[i].result.redscore)
                 }
-                if (parseInt(jd[i].redscore) < lowScore) {
-                  lowScore = parseInt(jd[i].redscore)
+                if (parseInt(jd[i].result.redscore) < lowScore) {
+                  lowScore = parseInt(jd[i].result.redscore)
                 }
-                if (parseInt(jd[i].redscore) > parseInt(jd[i].bluescore)) {
+                if (parseInt(jd[i].result.redscore) > parseInt(jd[i].result.bluescore)) {
                   scoreshtml += ('<td class="victory">WIN</td>');
-                } else if (parseInt(jd[i].redscore) == parseInt(jd[i].bluescore)) {
+                } else if (parseInt(jd[i].result.redscore) == parseInt(jd[i].result.bluescore)) {
                   scoreshtml += ('<td class="tie">TIE</td>');
                 } else {
                   scoreshtml += ('<td class="yellow">LOSS</td>');
                 }
               } else {
-                if (parseInt(jd[i].bluescore) > highScore) {
-                  highScore = parseInt(jd[i].bluescore)
+                if (parseInt(jd[i].result.bluescore) > highScore) {
+                  highScore = parseInt(jd[i].result.bluescore)
                 }
-                if (parseInt(jd[i].bluescore) < lowScore) {
-                  lowScore = parseInt(jd[i].bluescore)
+                if (parseInt(jd[i].result.bluescore) < lowScore) {
+                  lowScore = parseInt(jd[i].result.bluescore)
                 }
-                if (parseInt(jd[i].bluescore) > parseInt(jd[i].redscore)) {
+                if (parseInt(jd[i].result.bluescore) > parseInt(jd[i].result.redscore)) {
                   scoreshtml += ('<td class="victory">WIN</td>');
-                } else if (parseInt(jd[i].redscore) == parseInt(jd[i].bluescore)) {
+                } else if (parseInt(jd[i].result.redscore) == parseInt(jd[i].result.bluescore)) {
                   scoreshtml += ('<td class="tie">TIE</td>');
                 } else {
                   scoreshtml += ('<td class="yellow">LOSS</td>');
@@ -229,11 +229,11 @@ $(document).ready(function() {
     success: function(jd) {
       if (jd.length < 3) {} else {
         for (i = 0; i < 3; i++) {
-          $('#' + (i + 1)).append('<td>' + jd[i].rank + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].teamnum + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].wp + '</td>');
-          $('#' + (i + 1)).append('<td>' + jd[i].sp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.result.rank + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.result.team + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.result.wp + '</td>');
+          $('#' + (i + 1)).append('<td>' + jd[i].result.result.sp + '</td>');
         }
       }
     },
@@ -245,12 +245,12 @@ $(document).ready(function() {
     success: function(jd) {
       if (jd.length == 0) {} else {
         for (i = 0; i < jd.length; i++) {
-          if (jd[i].teamnum == teamNumber) {
-            $('#us').append('<td><b>' + jd[i].rank + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].teamnum + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].wp + '</b></td>');
-            $('#us').append('<td><b>' + jd[i].sp + '</b></td>');
+          if (jd[i].result.team == teamber) {
+            $('#us').append('<td><b>' + jd[i].result.result.rank + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.result.team + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.result.wp + '</b></td>');
+            $('#us').append('<td><b>' + jd[i].result.result.sp + '</b></td>');
           }
         }
       }
@@ -272,18 +272,18 @@ $(document).ready(function() {
         scoreshtml += 'id="' + divisionsArray[division-1] + '"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
         if(jd!=null) {
           for (i = 0; i < jd.length - 1; i++) {
-            if (jd[i].teamnum == teamNumber) {
-              scoreshtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-              scoreshtml += ('<td class=yellow><b><a class="black" href=http://team62.github.io?team=' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></b></td>');
-              scoreshtml += ('<td class=yellow><b>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</b></td>');
-              scoreshtml += ('<td class=yellow><b>' + jd[i].wp + '</b></td>');
-              scoreshtml += ('<td class=yellow><b>' + jd[i].sp + '</b></td></tr>');
+            if (jd[i].result.team == teamber) {
+              scoreshtml += ('<td class=yellow><b>' + jd[i].result.rank + '</b></td>');
+              scoreshtml += ('<td class=yellow><b><a class="black" href=http://team62.github.io?team=' + jd[i].result.team + '>' + jd[i].result.team + '</a></b></td>');
+              scoreshtml += ('<td class=yellow><b>' + jd[i].result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</b></td>');
+              scoreshtml += ('<td class=yellow><b>' + jd[i].result.wp + '</b></td>');
+              scoreshtml += ('<td class=yellow><b>' + jd[i].result.sp + '</b></td></tr>');
             } else {
-              scoreshtml += ('<td>' + jd[i].rank + '</td>');
-              scoreshtml += ('<td><a class="black" href=http://team62.github.io?team=' + jd[i].teamnum + '>' + jd[i].teamnum + '</a></td>');
-              scoreshtml += ('<td>' + jd[i].wins + '-' + jd[i].losses + '-' + jd[i].ties + '</td>');
-              scoreshtml += ('<td>' + jd[i].wp + '</td>');
-              scoreshtml += ('<td>' + jd[i].sp + '</td></tr>');
+              scoreshtml += ('<td>' + jd[i].result.rank + '</td>');
+              scoreshtml += ('<td><a class="black" href=http://team62.github.io?team=' + jd[i].result.team + '>' + jd[i].result.team + '</a></td>');
+              scoreshtml += ('<td>' + jd[i].result.wins + '-' + jd[i].result.losses + '-' + jd[i].result.ties + '</td>');
+              scoreshtml += ('<td>' + jd[i].result.wp + '</td>');
+              scoreshtml += ('<td>' + jd[i].result.sp + '</td></tr>');
             }
           }
           scoreshtml += '</table></div>';
@@ -301,16 +301,16 @@ $(document).ready(function() {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
-        if (jd[i].teamnum == teamNumber) {
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].team + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].attempts + '</b></td></tr>');
+        if (jd[i].result.team == teamber) {
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.rank + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.team + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.highscore + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.attempts + '</b></td></tr>');
         } else {
-          roboSkillsHtml += ('<td>' + jd[i].rank + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].team + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].highscore + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].attempts + '</td></tr>');
+          roboSkillsHtml += ('<td>' + jd[i].result.rank + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.team + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.highscore + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.attempts + '</td></tr>');
         }
       }
       roboSkillsHtml += '</table>';
@@ -327,16 +327,16 @@ $(document).ready(function() {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
       for (i = 0; i < jd.length - 1; i++) {
-        if (jd[i].teamnum == teamNumber) {
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].rank + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].team + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].highscore + '</b></td>');
-          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].attempts + '</b></td></tr>');
+        if (jd[i].result.team == teamber) {
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.rank + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.team + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.highscore + '</b></td>');
+          roboSkillsHtml += ('<td class=yellow><b>' + jd[i].result.attempts + '</b></td></tr>');
         } else {
-          roboSkillsHtml += ('<td>' + jd[i].rank + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].team + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].highscore + '</td>');
-          roboSkillsHtml += ('<td>' + jd[i].attempts + '</td></tr>');
+          roboSkillsHtml += ('<td>' + jd[i].result.rank + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.team + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.highscore + '</td>');
+          roboSkillsHtml += ('<td>' + jd[i].result.attempts + '</td></tr>');
         }
       }
       roboSkillsHtml += '</table>';
@@ -371,31 +371,31 @@ $(document).ready(function() {
         currentMatchNumber = 0;
         differience = 0;
         for (i = 0; i < jd.length; i++) {
-          if (jd[i].scored == 'False') {
-            currentMatchNumber = jd[i].matchnum;
+          if (jd[i].result.scored == 'False') {
+            currentMatchNumber = jd[i].result.matchnum;
             currentMatchTitle = "";
-            if (jd[i].round == 2) {
+            if (jd[i].result.round == 2) {
               currentMatchTitle=('QM ');
-            } else if (jd[i].round == 3) {
+            } else if (jd[i].result.round == 3) {
               currentMatchTitle=('QF ');
-            } else if (jd[i].round == 4) {
+            } else if (jd[i].result.round == 4) {
               currentMatchTitle=('SF ');
-            } else if (jd[i].round == 5) {
+            } else if (jd[i].result.round == 5) {
               currentMatchTitle=('F ');
-            } else if (jd[i].round == 6) {
+            } else if (jd[i].result.round == 6) {
               currentMatchTitle=('R16 ');
             }
-            $('#currentmatch').append('Current Match Number: ' + currentMatchTitle + jd[i].matchnum);
+            $('#currentmatch').append('Current Match Number: ' + currentMatchTitle + jd[i].result.matchnum);
             break;
           }
         }
         for(i = 0; i < jd.length; i++) {
-          if(jd[i].scored == 'False' && (jd[i].red1 == teamNumber || jd[i].red2 == teamNumber || jd[i].red3 == teamNumber || jd[i].blue1 == teamNumber || jd[i].blue2 == teamNumber || jd[i].blue3 == teamNumber)) {
-            differience = jd[i].matchnum - currentMatchNumber;
+          if(jd[i].result.scored == 'False' && (jd[i].result.red1 == teamber || jd[i].result.red2 == teamber || jd[i].result.red3 == teamber || jd[i].result.blue1 == teamber || jd[i].result.blue2 == teamber || jd[i].result.blue3 == teamber)) {
+            differience = jd[i].result.matchnum - currentMatchNumber;
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
-              $('#currentmatch').append(', Our Next Match: ' + jd[i].matchnum + ', Up in <b>' + differience + '</b> matches, at ' + jd[i].timescheduled.substring(11));
+              $('#currentmatch').append(', Our Next Match: ' + jd[i].result.matchnum + ', Up in <b>' + differience + '</b> matches, at ' + jd[i].result.timescheduled.substring(11));
             break;
           }
         }
