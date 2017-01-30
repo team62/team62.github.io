@@ -100,7 +100,7 @@ $(document).ready(function() {
   scoreshtml = '<table style="width:100%" border="1"><tr><th>Match</th><th>Red Alliance</th><th>Blue Alliance</th><th>Red Score</th><th>Blue Score</th><th>Time</th><th>Outcome</th></tr>';
   for (var division = 1; division<=divisions; division++) {
     $.ajax({
-      url: 'https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + division,
+      url: 'https://api.vexdb.io/v1/get_matches?sku=' + mySKU + '&division=' + teamDivision,
       dataType: 'json',
       success: function(jd) {
         if(jd!=null) {
@@ -261,7 +261,7 @@ $(document).ready(function() {
   //Handle rankings - from robotevents
   for (division=1; division<=divisions; division++) {
     $.ajax({
-      url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + division,
+      url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivision,
       dataType: 'json',
       success: function(jd) {
         scoreshtml = '<button class="accordion">'+divisionsArray[division-1]+'</button>'
