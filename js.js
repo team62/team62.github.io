@@ -104,7 +104,7 @@ $(document).ready(function() {
       dataType: 'json',
       success: function(jd) {
         if(jd!=null) {
-          for (i = 0; i < jd.length; i++) {
+          for (i = 0; i < jd.size; i++) {
             if (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber) {
               if (jd.result[i].scored == 0) {
                 $('#status').append('<i>Next Match:</i> ');
@@ -138,7 +138,7 @@ $(document).ready(function() {
               }
             }
           }
-          for (i = 0; i < jd.length - 1; i++) {
+          for (i = 0; i < jd.size - 1; i++) {
             if (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber) {
               scoreshtml += ('<tr>');
               scoreshtml += ('<td>');
@@ -243,8 +243,8 @@ $(document).ready(function() {
     url: 'https://api.vexdb.io/v1/get_rankings?sku=' + mySKU + '&division=' + teamDivision,
     dataType: 'json',
     success: function(jd) {
-      if (jd.length == 0) {} else {
-        for (i = 0; i < jd.length; i++) {
+      if (jd.size == 0) {} else {
+        for (i = 0; i < jd.size; i++) {
           if (jd.result[i].team == teamber) {
             $('#us').append('<td><b>' + jd.result[i].rank + '</b></td>');
             $('#us').append('<td><b>' + jd.result[i].team + '</b></td>');
@@ -271,7 +271,7 @@ $(document).ready(function() {
           scoreshtml += '<div class="panel"';
         scoreshtml += 'id="' + divisionsArray[division-1] + '"><table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>W-L-T</th><th>WP</th><th>SP</th></tr>';
         if(jd!=null) {
-          for (i = 0; i < jd.length - 1; i++) {
+          for (i = 0; i < jd.size - 1; i++) {
             if (jd.result[i].team == teamber) {
               scoreshtml += ('<td class=yellow><b>' + jd.result[i].rank + '</b></td>');
               scoreshtml += ('<td class=yellow><b><a class="black" href=http://team62.github.io?team=' + jd.result[i].team + '>' + jd.result[i].team + '</a></b></td>');
@@ -300,7 +300,7 @@ $(document).ready(function() {
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
-      for (i = 0; i < jd.length - 1; i++) {
+      for (i = 0; i < jd.size - 1; i++) {
         if (jd.result[i].team == teamber) {
           roboSkillsHtml += ('<td class=yellow><b>' + jd.result[i].rank + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd.result[i].team + '</b></td>');
@@ -326,7 +326,7 @@ $(document).ready(function() {
     success: function(input) {
       var jd = jQuery.parseJSON(CSV2JSON(input));
       roboSkillsHtml = '<table style="width:100%" border="1"><tr><th>Rank</th><th>Team #</th><th>Score</th><th>Attempts</th></tr>';
-      for (i = 0; i < jd.length - 1; i++) {
+      for (i = 0; i < jd.size - 1; i++) {
         if (jd.result[i].team == teamber) {
           roboSkillsHtml += ('<td class=yellow><b>' + jd.result[i].rank + '</b></td>');
           roboSkillsHtml += ('<td class=yellow><b>' + jd.result[i].team + '</b></td>');
@@ -370,7 +370,7 @@ $(document).ready(function() {
       success: function(jd) {
         currentMatchNumber = 0;
         differience = 0;
-        for (i = 0; i < jd.length; i++) {
+        for (i = 0; i < jd.size; i++) {
           if (jd.result[i].scored == 0) {
             currentMatchNumber = jd.result[i].matchnum;
             currentMatchTitle = "";
@@ -389,7 +389,7 @@ $(document).ready(function() {
             break;
           }
         }
-        for(i = 0; i < jd.length; i++) {
+        for(i = 0; i < jd.size; i++) {
           if(jd.result[i].scored == 0 && (jd.result[i].red1 == teamber || jd.result[i].red2 == teamber || jd.result[i].red3 == teamber || jd.result[i].blue1 == teamber || jd.result[i].blue2 == teamber || jd.result[i].blue3 == teamber)) {
             differience = jd.result[i].matchnum - currentMatchNumber;
             if(differience == 0)
