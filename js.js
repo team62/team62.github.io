@@ -395,7 +395,7 @@ $(document).ready(function() {
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
-              $('#currentmatch').append(', Our Next Match: ' + jd.result[i].matchnum + ', Up in <b>' + differience + '</b> matches, at ' + jd.result[i].scheduled.substring(11));
+              $('#currentmatch').append(', Our Next Match: ' + jd.result[i].matchnum + ', Up in <b>' + differience + '</b> matches, at ' + moment(jd.result[i].scheduled).utc().format("H:mm A"));
             break;
           }
         }
