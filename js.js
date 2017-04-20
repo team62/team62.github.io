@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   //For title, gets team name
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_teams?team=' + teamnumber,
+    url: 'https://api.vexdb.io/v1/get_teams?team=' + teamnumber,
     dataType: 'json',
     success: function(jd) {
       $('#title').append('<p>Team ' + teamnumber + ', ' + jd.result[0].team_name + '</p>');
@@ -23,7 +23,7 @@ $(document).ready(function() {
   //Sets SKU of tournament to any current tournament, if we're not in one, display the last tournament
   if(mySKU == undefined) {
     $.ajax({
-      url: 'http://api.vexdb.io/v1/get_events?team=' + teamnumber + '&status=current',
+      url: 'https://api.vexdb.io/v1/get_events?team=' + teamnumber + '&status=current',
       dataType: 'json',
       success: function(jd) {
         if (jd.size == 0) {
@@ -33,14 +33,14 @@ $(document).ready(function() {
           $('#status').append('<p>' + jd.result[0].name + '</p>');
           if(mySKU == undefined)
             mySKU = jd.result[0].sku;
-          $('#sku').append(mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
+          $('#sku').append(mySKU + ': <a href=https://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=https://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
         }
       },
       async: false,
     });
     if (!competingCurrently) {
       $.ajax({
-        url: 'http://api.vexdb.io/v1/get_events?team=' + teamnumber + '&status=past',
+        url: 'https://api.vexdb.io/v1/get_events?team=' + teamnumber + '&status=past',
         dataType: 'json',
         success: function(jd) {
           $('#status').append('<p>' + jd.result[0].name + '</p>');
@@ -48,7 +48,7 @@ $(document).ready(function() {
             skillsCompetition = true;
           }
           mySKU = jd.result[0].sku;
-          $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
+          $('#sku').append('<br>' + mySKU + ': <a href=https://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=https://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
         },
         async: false,
         timeout: 5000,
@@ -56,12 +56,12 @@ $(document).ready(function() {
     }
   } else {
     $.ajax({
-      url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
+      url: 'https://api.vexdb.io/v1/get_events?sku=' + mySKU,
       dataType: 'json',
       success: function(jd) {
         $('#status').append('<p>' + jd.result[0].name + '</p>');
         mySKU = jd.result[0].sku;
-        $('#sku').append('<br>' + mySKU + ': <a href=http://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=http://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
+        $('#sku').append('<br>' + mySKU + ': <a href=https://www.robotevents.com/' + mySKU + '.html>RobotEvents</a>, <a href=https://vex.us.nallen.me/events/view/' + mySKU + '>VexDB</a>');
       },
       async: false,
       timeout: 5000,
@@ -74,7 +74,7 @@ $(document).ready(function() {
 
   //Handle matches from RobotEvents
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_events?sku=' + mySKU,
+    url: 'https://api.vexdb.io/v1/get_events?sku=' + mySKU,
     dataType: 'json',
     success: function(jd) {
         divisions = jd.result[0].divisions.length;
@@ -84,7 +84,7 @@ $(document).ready(function() {
     timeout: 5000,
   });
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamnumber,
+    url: 'https://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamnumber,
     dataType: 'json',
     success: function(jd) {
       teamDivision = jd.result[0].division;
@@ -274,13 +274,13 @@ $(document).ready(function() {
           for (i = 0; i < jd.size - 1; i++) {
             if (jd.result[i].team == teamnumber) {
               scoreshtml += ('<td class=yellow><b>' + jd.result[i].rank + '</b></td>');
-              scoreshtml += ('<td class=yellow><b><a class="black" href=http://team62.github.io?team=' + jd.result[i].team + '>' + jd.result[i].team + '</a></b></td>');
+              scoreshtml += ('<td class=yellow><b><a class="black" href=https://team62.github.io?team=' + jd.result[i].team + '>' + jd.result[i].team + '</a></b></td>');
               scoreshtml += ('<td class=yellow><b>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</b></td>');
               scoreshtml += ('<td class=yellow><b>' + jd.result[i].wp + '</b></td>');
               scoreshtml += ('<td class=yellow><b>' + jd.result[i].sp + '</b></td></tr>');
             } else {
               scoreshtml += ('<td>' + jd.result[i].rank + '</td>');
-              scoreshtml += ('<td><a class="black" href=http://team62.github.io?team=' + jd.result[i].team + '>' + jd.result[i].team + '</a></td>');
+              scoreshtml += ('<td><a class="black" href=https://team62.github.io?team=' + jd.result[i].team + '>' + jd.result[i].team + '</a></td>');
               scoreshtml += ('<td>' + jd.result[i].wins + '-' + jd.result[i].losses + '-' + jd.result[i].ties + '</td>');
               scoreshtml += ('<td>' + jd.result[i].wp + '</td>');
               scoreshtml += ('<td>' + jd.result[i].sp + '</td></tr>');
@@ -346,7 +346,7 @@ $(document).ready(function() {
   });
   //Robot skills high score - from vexdb
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
+    url: 'https://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=0',
     dataType: 'json',
     success: function(jd) {
       $('#robohighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
@@ -356,7 +356,7 @@ $(document).ready(function() {
 
   //programming skills high score - from vexdb
   $.ajax({
-    url: 'http://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
+    url: 'https://api.vexdb.io/v1/get_skills?season_rank=true&rank=1&program=VRC&season=current&type=1',
     dataType: 'json',
     success: function(jd) {
       $('#proghighscore').append(jd.result[0].team + " (" + jd.result[0].attempts + " attempts): " + jd.result[0].score);
