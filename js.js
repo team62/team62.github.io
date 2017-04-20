@@ -84,7 +84,7 @@ $(document).ready(function() {
     timeout: 5000,
   });
   $.ajax({
-    url: 'https://api.vexdb.io/v1/get_rankings?sku='+ mySKU + '&team=' + teamnumber,
+    url: 'https://api.vexdb.io/v1/get_matches?sku='+ mySKU + '&team=' + teamnumber,
     dataType: 'json',
     success: function(jd) {
       teamDivision = jd.result[0].division;
