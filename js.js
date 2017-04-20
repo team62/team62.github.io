@@ -178,7 +178,7 @@ $(document).ready(function() {
               else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
               scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
               scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
-              scoreshtml += ('<td>'+jd.result[i].scheduled+'</td>');
+              scoreshtml += ('<td>'+moment(jd.result[i].scheduled).format("ddd D/M H:mm A")+'</td>');
               if (jd.result[i].scored == 0)
                 scoreshtml += ('<td>Unplayed</td>');
               else if ((jd.result[i].red1 == teamnumber) || (jd.result[i].red2 == teamnumber) || (jd.result[i].red3 == teamnumber)) {
