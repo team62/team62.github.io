@@ -178,7 +178,7 @@ $(document).ready(function() {
               else scoreshtml += ('<td class="blue">' + b1 + ", " + b2 + ", " + b3 + '</td>');
               scoreshtml += ('<td class="red">' + jd.result[i].redscore + '</td>');
               scoreshtml += ('<td class="blue">' + jd.result[i].bluescore + '</td>');
-              scoreshtml += ('<td>'+moment(jd.result[i].scheduled).zone("+00:00").format("ddd D/M H:mm A")+'</td>');
+              scoreshtml += ('<td>'+moment(jd.result[i].scheduled).zone("+00:00").format("ddd D/M h:mm A")+'</td>');
               if (jd.result[i].scored == 0)
                 scoreshtml += ('<td>Unplayed</td>');
               else if ((jd.result[i].red1 == teamnumber) || (jd.result[i].red2 == teamnumber) || (jd.result[i].red3 == teamnumber)) {
@@ -395,7 +395,7 @@ $(document).ready(function() {
             if(differience == 0)
               $('#currentmatch').append('<b> Playing Now</b>');
             else
-              $('#currentmatch').append(', Our Next Match: ' + jd.result[i].matchnum + ', Up in <b>' + differience + '</b> matches, at ' + moment(jd.result[i].scheduled).zone("+00:00").format("H:mm A"));
+              $('#currentmatch').append(', Our Next Match: ' + jd.result[i].matchnum + ', Up in <b>' + differience + '</b> matches, at ' + moment(jd.result[i].scheduled).zone("+00:00").format("h:mm A"));
             break;
           }
         }
